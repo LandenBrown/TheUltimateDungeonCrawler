@@ -14,10 +14,6 @@ class MonsterType:
         self.attack5 = attack5
         
 
-earthen = MonsterType("Earthen", 0, None, None, None, None, None, None, None)
-void = MonsterType("Void Realm", 5, None, None, None, None, None, None, None)
-chaotic = MonsterType("Chaotic", 7, None, None, None, None, None, None, None)
-
 
 
 

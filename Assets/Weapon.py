@@ -36,6 +36,6 @@ class Weapon:
 			self.swingbuffer = 9
 
 
-ironKnife = Weapon("Iron Knife", 1, 1, 1, 5, 5, 3, 3)
+
 			
 

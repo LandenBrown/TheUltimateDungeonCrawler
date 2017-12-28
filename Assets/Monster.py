@@ -15,6 +15,4 @@ class Monster:
     def monsterHit():
         self.monstertype.attack() #has not been created yet
 
-wolf = Monster("Wolf", 20, 20, 3, 10, 1, None)
-
 

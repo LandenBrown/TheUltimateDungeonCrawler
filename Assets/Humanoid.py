@@ -1,5 +1,6 @@
 from __init__ import *
 from Weapon import *
+from Object_Creation import *
 import random
 class Humanoid:
     def __init__(self, name, profession, level, gold, health, maxhealth, inventory, mainweapon, damagedealt):
@@ -35,9 +36,8 @@ class Humanoid:
         print self.damagedealt
         
 
-
-        
-        
-
-
 player = Humanoid(None, None, 1, 0, 0, 0, [], ironKnife, None)
+        
+        
+
+
