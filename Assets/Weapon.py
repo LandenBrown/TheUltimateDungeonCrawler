@@ -1,6 +1,7 @@
 from __init__ import *
 
 class Weapon:
+
 	def __init__(self, name, damage, swing_speed, level, durability, max_durability, damagebuffer, swingbuffer):
 		self.name = name
 		self.damage = damage
@@ -10,6 +11,7 @@ class Weapon:
 		self.max_durability = max_durability
 		self.damagebuffer = damagebuffer
 		self.swingbuffer = swingbuffer ####Changes from maxswing to buffer
+
 		
 	def checklevel(self):
 		if self.level == 1:
@@ -36,3 +38,4 @@ class Weapon:
 
 ironKnife = Weapon("Iron Knife", 1, 1, 1, 5, 5, 3, 3)
 			
+
