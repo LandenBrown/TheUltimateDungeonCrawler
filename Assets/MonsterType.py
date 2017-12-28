@@ -2,7 +2,7 @@ from __init__ import *
 from Monster import *
 
 class MonsterType:
-    def __init__(self, name, damagebonus, weakness, strength):
+    def __init__(self, name, damagebonus, weakness, strength, attack1, attack2, attack3, attack4, attack5):
         self.name = name
         self.damagebonus = damagebonus
         self.weakness = weakness
@@ -14,9 +14,9 @@ class MonsterType:
         self.attack5 = attack5
         
 
-earthen = MonsterType("Earthen", 0, None, None)
-void = MonsterType("Void Realm", 5, None, None)
-chaotic = MonsterType("Chaotic", 7, None, None)
+earthen = MonsterType("Earthen", 0, None, None, None, None, None, None, None)
+void = MonsterType("Void Realm", 5, None, None, None, None, None, None, None)
+chaotic = MonsterType("Chaotic", 7, None, None, None, None, None, None, None)
 
 
 

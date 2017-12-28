@@ -13,7 +13,7 @@ class Monster:
 
 
     def monsterHit():
-        self.monstertype.attack()
+        self.monstertype.attack() #has not been created yet
 
 
 
