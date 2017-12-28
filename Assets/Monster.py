@@ -1,27 +1,20 @@
 from __init__ import *
+from MonsterType import *
 
-class Humanoid:
-    def __init__(self, name, profession, level, gold, health, maxhealth, inventory):
+class Monster:
+    def __init__(self, name, health, maxhealth, damage, golddrop, xpdrop, monstertype):
         self.name = name
-        self.profession = profession
-        self.level = level
-        self.gold = gold
         self.health = health
         self.maxhealth = maxhealth
-        self.inventory = inventory
+        self.damage = damage
+        self.golddrop = golddrop
+        self.xpdrop = xpdrop
+        self.monstertype = monstertpye
 
-    def checkLevel(self):
-        if self.level == 1:
-            self.maxhealth = 100
-        if self.level == 2:
-            self.maxhealth = 120
-        if self.level == 3:
-            self.maxhealth = 144
-        if self.level == 4:
-            self.maxhealth = 172
-        if self.level == 5:
-            self.maxhealth = 206
 
-        self.health = self.maxhealth
+    def monsterHit():
+        self.monstertype.attack()
+
+
 
 
