@@ -1,5 +1,5 @@
-import time, math, os
+import time, math, os, easygui
+from Assets import *
 
-print "hello world."
-print "This is a test edit"
 
+easygui.msgbox("Hello stupid fucking world")
