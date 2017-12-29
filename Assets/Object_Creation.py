@@ -24,6 +24,8 @@ from Location import *
 ironKnife = Weapon("Iron Knife", 1, 5, 1, 30, 30, 1, 1, 3)
 cratherdagger = Weapon("Crather Dagger", 2, 5, 1, 50, 50, 1, 1, 200)
 fellrykedagger = Weapon("FellRyke Dagger", 1, 5, 1, 30, 30, 3, 1, 200)
+spidersfang = Weapon("Spidersfang", 2, 5, 1, 50, 50, 4, 1, 300) #small chance for drop on queen spider, 100% on Shelob
+
 
 
 ##Medium Weapons
@@ -44,7 +46,11 @@ bandit = Monster("Bandit", 20, 20, 3, 10, 1, None, None)
 bandit_journeyman = Monster("Journeyman Bandit", 30, 30, 5, 20, 3, None, None)
 bandit_chieftain = Monster("Chieftain Bandit", 60, 60, 7, 30, 6, None, None)
 bandit_warlord = Monster("Bandit Warlord", 100, 100, 15, 80, 20, None, None)
-cthulhu = Monster("Cthulhu: Reaper of all Worlds", 1000, 1000, 50, 1000, 1000, None, None)
+cthulhu = Monster("Cthulhu: Reaper of all Worlds", 1000, 1000, 50, 1000, 1000, None, None) #unique
+spiderling = Monster("Spiderling", 5, 5, 2, 1, 1, None, None)
+spider_adult = Monster("Adult Spider", 10, 10, 3, 5, 3, None, None)
+spider_queen = Monster("Queen Spider", 30, 30, 6, 20, 10, None, None)
+shelob = Monster("Her Ladyship, Shelob", 100, 100, 10, 100, 100, None, None)#Unique spider
 
 
 
