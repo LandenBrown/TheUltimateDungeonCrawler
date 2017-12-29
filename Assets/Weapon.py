@@ -2,40 +2,41 @@ from __init__ import *
 
 class Weapon:
 
-	def __init__(self, name, damage, swing_speed, level, durability, max_durability, damagebuffer, swingbuffer):
+	def __init__(self, name, damage, swing_speed, level, durability, max_durability, max_damage_buffer, swing_buffer):
 		self.name = name
 		self.damage = damage
 		self.swing_speed = swing_speed
 		self.level = level
 		self.durability = durability
 		self.max_durability = max_durability
-		self.damagebuffer = damagebuffer
-		self.swingbuffer = swingbuffer ####Changes from maxswing to buffer
+		self.max_damage_buffer = max_damage_buffer
+		self.swing_buffer = swing_buffer ####Changes from maxswing to  swing_buffer
 
 		
 	def checklevel(self):
 		if self.level == 1:
 			self.max_durability = 100
-			self.damagebuffer = 10   #Changes to buffer instead of max_damage
-			self.swingbuffer = 5
+			self.max_damage_buffer = 10   #Changes to buffer instead of max_damage
+			self.swing_buffer = 5
 		if self.level == 2:
 			self.max_durability = 120
-			self.damagebuffer = 15
-			self.swingbuffer = 6
+			self.max_damage_buffer = 15
+			self.swing_buffer = 6
 		if self.level == 3:
 			self.max_durability = 140
-			self.damagebuffer = 20
-			self.swingbuffer = 7
+			self.max_damage_buffer = 20
+			self.swing_buffer = 7
 		if self.level == 4:
 			self.max_durability = 160
-			self.damagebuffer = 25
-			self.swingbuffer = 8
+			self.max_damage_buffer = 25
+			self.swing_buffer = 8
 		if self.level == 5:
 			self.max_durability = 180
-			self.damagebuffer = 30
-			self.swingbuffer = 9
+			self.max_damage_buffer = 30
+			self.swing_buffer = 9
 
 
 
 			
 
+##### FUTURE CHANGES - MAKE ENHANCEMENTS MODIFY THE DAMAGE BUFFER AND THE SWING BUFFER

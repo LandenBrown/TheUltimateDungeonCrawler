@@ -3,8 +3,9 @@ from Weapon import *
 from Object_Creation import *
 import random
 class Humanoid:
-    def __init__(self, name, profession, level, gold, health, maxhealth, inventory, mainweapon, damagedealt):
+    def __init__(self, name, race, profession, level, gold, health, maxhealth, inventory, mainweapon, damagedealt):
         self.name = name
+        self.race = race
         self.profession = profession
         self.level = level
         self.gold = gold
@@ -30,14 +31,17 @@ class Humanoid:
 
     def Hit(self):
         #here we are going to make the function to hit the monster, so we can call it during game
-        self.damagedealt = random.randint(self.mainweapon.damage - self.mainweapon.damagebuffer, self.mainweapon.damage + self.mainweapon.damagebuffer)  # so if we take the stats from the current weapon the player has equipped
-        if player.damagedealt < 0: #making sure that we never do negative damage                                                                         this would be damagedealt = random.randint(1 - 3, 1+3) 
-            damagedealt = 0                                                                                                                             # So basically any number from (-2, 4)
+        self.damagedealt = random.randint(self.mainweapon.damage, self.mainweapon.damage + self.mainweapon.max_damage_buffer)
+        ##if player.damagedealt < 0: #making sure that we never do negative damage    ############## I COMMENTED THIS OUT BECAUSE NOW DAMAGE SHOULD NEVER BE NEGATIVE DUE TO THE NEW DAMAGE_BUFFER CALCULATIONS - SCORE!                                                                     
+        ##  damagedealt = 0                                                                                                                             
         print self.damagedealt
         
 
-player = Humanoid(None, None, 1, 0, 0, 0, [], ironKnife, None)
+player = Humanoid(None, None, None, 1, 0, 0, 0, [], ironKnife, None)
         
         
 
 
+###LAST CHANGE - CREATED "RACE" Attribute 12/29/17
+### Changed the HIT function to calculate from the base weapon damage as its primary, and a random number between the main weapon damage plus whatever the weapons damagebuffer is.
+#############################   CONT. The damage buffer is calculated every interaction on the weapon based on enhancements etc. See Weapon class for this

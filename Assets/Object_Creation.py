@@ -15,7 +15,7 @@ ironKnife = Weapon("Iron Knife", 1, 1, 1, 5, 5, 3, 3)
 
 
 ##########################----MONSTERS----##############################
-wolf = Monster("Wolf", 20, 20, 3, 10, 1, None)
+wolf = Monster("Wolf", 20, 20, 3, 10, 1, None, None)
 
 
 
@@ -23,9 +23,9 @@ wolf = Monster("Wolf", 20, 20, 3, 10, 1, None)
 
 
 ##########################----MONSTER TYPES----#########################
-earthen = MonsterType("Earthen", 0, None, None, None, None, None, None, None)
-void = MonsterType("Void Realm", 5, None, None, None, None, None, None, None)
-chaotic = MonsterType("Chaotic", 7, None, None, None, None, None, None, None)
+earthen = MonsterBreed("Earthen", None, None, None, None, None, None)
+void = MonsterBreed("Void Realm", None, None, None, None, None, None)
+chaotic = MonsterBreed("Chaotic", None, None, None, None, None, None)
 
 #########################----LOCATIONS----##############################
 
