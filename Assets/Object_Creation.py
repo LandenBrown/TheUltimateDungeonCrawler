@@ -39,7 +39,12 @@ fellrykespear = Weapon("FellRyke Spear", 4, 2, 1, 40, 40, 10, 3, 750)
 
 ##########################----MONSTERS----##############################
 wolf = Monster("Wolf", 20, 20, 3, 10, 1, None, None)
+wolf_alpha = Monster("Alpha Wolf", 50, 50, 5, 20, 3, None, None)
 bandit = Monster("Bandit", 20, 20, 3, 10, 1, None, None)
+bandit_journeyman = Monster("Journeyman Bandit", 30, 30, 5, 20, 3, None, None)
+bandit_chieftain = Monster("Chieftain Bandit", 60, 60, 7, 30, 6, None, None)
+bandit_warlord = Monster("Bandit Warlord", 100, 100, 15, 80, 20, None, None)
+cthulhu = Monster("Cthulhu: Reaper of all Worlds", 1000, 1000, 50, 1000, 1000, None, None)
 
 
 
