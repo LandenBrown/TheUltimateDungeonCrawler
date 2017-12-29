@@ -39,7 +39,7 @@ fellrykespear = Weapon("FellRyke Spear", 4, 2, 1, 40, 40, 10, 3, 750)
 
 ##########################----MONSTERS----##############################
 wolf = Monster("Wolf", 20, 20, 3, 10, 1, None, None)
-
+bandit = Monster("Bandit", 20, 20, 3, 10, 1, None, None)
 
 
 
