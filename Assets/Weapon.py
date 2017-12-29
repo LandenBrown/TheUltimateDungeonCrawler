@@ -1,8 +1,7 @@
 from __init__ import *
 
 class Weapon:
-
-	def __init__(self, name, damage, swing_speed, level, durability, max_durability, max_damage_buffer, swing_buffer):
+	def __init__(self, name, damage, swing_speed, level, durability, max_durability, max_damage_buffer, swing_buffer, cost):
 		self.name = name
 		self.damage = damage
 		self.swing_speed = swing_speed
@@ -11,6 +10,7 @@ class Weapon:
 		self.max_durability = max_durability
 		self.max_damage_buffer = max_damage_buffer
 		self.swing_buffer = swing_buffer ####Changes from maxswing to  swing_buffer
+		self.cost = cost
 
 		
 	def checklevel(self):

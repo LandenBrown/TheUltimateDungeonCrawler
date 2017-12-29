@@ -21,21 +21,21 @@ from Location import *
 ##
 
 ##Small Weapons
-ironKnife = Weapon("Iron Knife", 1, 5, 1, 30, 30, 1, 1)
-cratherdagger = Weapon("Crather Dagger", 2, 5, 1, 50, 50, 1, 1)
-fellrykedagger = Weapon("FellRyke Dagger", 1, 5, 1, 30, 30, 3, 1)
+ironKnife = Weapon("Iron Knife", 1, 5, 1, 30, 30, 1, 1, 3)
+cratherdagger = Weapon("Crather Dagger", 2, 5, 1, 50, 50, 1, 1, 200)
+fellrykedagger = Weapon("FellRyke Dagger", 1, 5, 1, 30, 30, 3, 1, 200)
 
 
 ##Medium Weapons
-ironlongsword = Weapon("Iron Longsword", 3, 3, 1, 30, 30, 2, 3)
-cratherlongsword = Weapon("Crather Longsword", 6, 3, 1, 50, 50, 3, 3) #Drop from monster only
-fellrykerapier = Weapon("FellRyke Rapier", 3, 4, 1, 60, 60, 5, 3) 
+ironlongsword = Weapon("Iron Longsword", 3, 3, 1, 30, 30, 2, 3, 5)
+cratherlongsword = Weapon("Crather Longsword", 6, 3, 1, 50, 50, 3, 3, 500) #Drop from monster only
+fellrykerapier = Weapon("FellRyke Rapier", 3, 4, 1, 60, 60, 5, 3, 500) 
 
 
 ##Large Weapons
-irongreatsword = Weapon("Iron Great Sword", 5, 1, 1, 30, 30, 2, 3)
-cratherpike = Weapon("Crather Pike", 8, 1, 1, 20, 30, 1, 3)
-fellrykespear = Weapon("FellRyke Spear", 4, 2, 1, 40, 40, 10, 3)
+irongreatsword = Weapon("Iron Great Sword", 5, 1, 1, 30, 30, 2, 3, 15)
+cratherpike = Weapon("Crather Pike", 8, 1, 1, 20, 30, 1, 3, 750)
+fellrykespear = Weapon("FellRyke Spear", 4, 2, 1, 40, 40, 10, 3, 750)
 
 ##########################----MONSTERS----##############################
 wolf = Monster("Wolf", 20, 20, 3, 10, 1, None, None)
