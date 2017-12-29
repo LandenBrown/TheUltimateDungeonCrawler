@@ -5,3 +5,6 @@ from Weapon import *
 from Object_Creation import *
 from Race import *
 from Location import *
+from Weapon_Enhancement import *
+from Armor_Enhancement import *
+from Armor import *
