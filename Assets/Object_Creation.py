@@ -40,17 +40,17 @@ crather_pike = Weapon("Crather Pike", 8, 1, 1, 20, 30, 1, 3, 750)
 fellryke_spear = Weapon("FellRyke Spear", 4, 2, 1, 40, 40, 10, 3, 750)
 
 ##########################----MONSTERS----##############################
-wolf = Monster("Wolf", 20, 20, 3, 10, 1, None, None)
-wolf_alpha = Monster("Alpha Wolf", 50, 50, 5, 20, 3, None, None)
-bandit = Monster("Bandit", 20, 20, 3, 10, 1, None, None)
-bandit_journeyman = Monster("Journeyman Bandit", 30, 30, 5, 20, 3, None, None)
-bandit_chieftain = Monster("Chieftain Bandit", 60, 60, 7, 30, 6, None, None)
-bandit_warlord = Monster("Bandit Warlord", 100, 100, 15, 80, 20, None, None)
-cthulhu = Monster("Cthulhu: Reaper of all Worlds", 1000, 1000, 50, 1000, 1000, None, None) #unique
-spiderling = Monster("Spiderling", 5, 5, 2, 1, 1, None, None)
-spider_adult = Monster("Adult Spider", 10, 10, 3, 5, 3, None, None)
-spider_queen = Monster("Queen Spider", 30, 30, 6, 20, 10, None, None)
-shelob = Monster("Her Ladyship, Shelob", 100, 100, 10, 100, 100, None, None)#Unique spider
+wolf = Monster("Wolf", 20, 20, 3, 10, 1, None, 1)
+wolf_alpha = Monster("Alpha Wolf", 50, 50, 5, 20, 3, None, 1)
+bandit = Monster("Bandit", 20, 20, 3, 10, 1, None, 1)
+bandit_journeyman = Monster("Journeyman Bandit", 30, 30, 5, 20, 3, None, 1)
+bandit_chieftain = Monster("Chieftain Bandit", 60, 60, 7, 30, 6, None, 1)
+bandit_warlord = Monster("Bandit Warlord", 100, 100, 15, 80, 20, None, 1)
+cthulhu = Monster("Cthulhu: Reaper of all Worlds", 1000, 1000, 50, 1000, 1000, None, 1) #unique
+spiderling = Monster("Spiderling", 5, 5, 2, 1, 1, None, 1)
+spider_adult = Monster("Adult Spider", 10, 10, 3, 5, 3, None, 1)
+spider_queen = Monster("Queen Spider", 30, 30, 6, 20, 10, None, 1)
+shelob = Monster("Her Ladyship, Shelob", 100, 100, 10, 100, 100, None, 1)#Unique spider
 
 
 
