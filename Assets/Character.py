@@ -1,9 +1,9 @@
 from __init__ import *
 from Weapon import *
 from Object_Creation import *
-
-
 import random
+
+
 class Humanoid:
     def __init__(self, name, race, profession, level, gold, health, maxhealth, inventory, mainweapon, damagedealt):
         self.name = name
@@ -40,7 +40,7 @@ class Humanoid:
         
 
 
-player = Humanoid(None, None, None, 1, 0, 0, 0, [], ironKnife, None)
+player = Humanoid(None, None, None, 1, 0, 0, 0, [], iron_knife, None)
 
 
         

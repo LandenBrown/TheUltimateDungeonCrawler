@@ -8,3 +8,5 @@ from Location import *
 from Weapon_Enhancement import *
 from Armor_Enhancement import *
 from Armor import *
+from Engine_Parts import *
+from Resource import *
