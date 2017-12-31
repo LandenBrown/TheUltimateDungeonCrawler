@@ -34,13 +34,13 @@ class Game_Time:
 				#Significant world changes
                 
 game_clock = Game_Time(1, 350)
-
+####
 def Generate_Monster(cnfg):
     monster1 = Monster(cnfg[0], cnfg[1], cnfg[2], cnfg[3], cnfg[4], cnfg[5], cnfg[6], cnfg[7], cnfg[8], cnfg[9]) #Monster is created based on location configs // in our real game it would be like player.location.sublocation.monsterconfig or something
     monster1.getConfigs() #We load the monster drop configurations
     return monster1 #This creates a location for this data outside of the scope and into a public memory status to be called-by-reference - which is essential
 
-
+####
 def Generate_Weapon(m):
     weapon1 = Weapon(m.wdropconfig[0], m.wdropconfig[1], m.wdropconfig[2], m.wdropconfig[3], m.wdropconfig[4], m.wdropconfig[5]) #What kind of weapon are we dropping is developed on the monsters config stats
     weapon1.getConfigs() #Load the weapon stats
@@ -51,6 +51,25 @@ def Generate_Weapon(m):
 def Generate_Armor(m):
     armor1 = armor(m.adropconfig)
     return armor1
+####
+def Start_Fight():
+  player.checkLevel()
+  myMonster = Generate_Monster(player.location.monster[0])
+  print "You have encountered a level " + str(myMonster.level) + " " + myMonster.name + "!"
+  while myMonster.health != "Dead": 
+    print "press anything to hit the monster!"
+    raw_input()
+    player.Hit(myMonster)
+    if myMonster.health <= 0:
+      print "You have killed the " + myMonster.name
+      Generate_Weapon(myMonster)
+      break
+    myMonster.Hit(player)
+    if player.health <= 0:
+      print "You have died!"
+      break
+    print myMonster.name + " health: " + str(myMonster.health) + " +|+ Player health: " + str(player.health) + "/" + str(player.maxhealth)
+####
 		
 def Engine_Start_Init():
         ############################################################################
