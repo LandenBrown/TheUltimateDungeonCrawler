@@ -22,28 +22,28 @@ class Game_Time:
                 if self.day >= 60:
                         self.year = self.year + 1
                         self.day = 1
-                        if year == 351:
+                        if self.year == 351:
                                 print "Welcome to the year of the Scorpion."
-				#A significant "Attention Grabber" designed to interest the player 
-				#Will bring new merchants to the world, earthquakes will open new dungeons
-				#A new element will envelope the world, causing imbalance in combat until contained (new quests)
-				#A Seeker will enter the world, often entering towns and offering legendary spells for high gold prices
-                        if year == 352:
+				                #A significant "Attention Grabber" designed to interest the player
+				                #Will bring new merchants to the world, earthquakes will open new dungeons
+				                #A new element will envelope the world, causing imbalance in combat until contained (new quests)
+				                #A Seeker will enter the world, often entering towns and offering legendary spells for high gold prices
+                        if self.year == 352:
                                 print "Welcome to the year of the Centaur"
-				#A great centuar will visit the town, look beautiful, but bring curses
-				#Must investigate and determine what is causing the dark magic (new quests)
-                        if year == 353:
+				                #A great centuar will visit the town, look beautiful, but bring curses
+				                #Must investigate and determine what is causing the dark magic (new quests)
+                        if self.year == 353:
                                 print "Welcome to the year of the Void Kraken"
-				#The Void Kraken will consume the FellRyke Spire, Must Climb the spire and kill each stage of him  
-				#Defeat it to visit this town again and help rebuild (New quests)
-                        if year == 354:
+				                #The Void Kraken will consume the FellRyke Spire, Must Climb the spire and kill each stage of him
+				                #Defeat it to visit this town again and help rebuild (New quests)
+                        if self.year == 354:
                                 print "Welcome to the year of the Ghoul"
-				#Ghouls will be twice as powerful this year
-				#An Army of Ghouls (level 3) will invade Crather Castle. You can run/fight
-				#Ghouls will grow in numbers if not dealt with, could potentially take over the world and all zones
-				#Ghouls will disapear upon the new year when the Searing Cornerstone turns them to ash
-				#Will force you to camp in the wilderness and not visit towns.
-                        if year == 355:
+				                #Ghouls will be twice as powerful this year
+				                #An Army of Ghouls (level 3) will invade Crather Castle. You can run/fight
+				                #Ghouls will grow in numbers if not dealt with, could potentially take over the world and all zones
+				                #Ghouls will disapear upon the new year when the Searing Cornerstone turns them to ash
+				                #Will force you to camp in the wilderness and not visit towns.
+                        if self.year == 355:
                                 print "Welcome to the decade of the Searing CornerStone"
 				#Sears all Ghouls from the year of the ghoul to ash
 				#Special event happens on day 25 
@@ -65,7 +65,7 @@ def Generate_Weapon(m):
     return weapon1
 ####
 def Generate_Armor(m):
-    armor1 = armor(m.adropconfig)
+    armor1 = Armor(m.adropconfig)
     return armor1
 ####
 def Start_Fight():
@@ -88,7 +88,7 @@ def Start_Fight():
 ####
 
 class Humanoid:
-    def __init__(self, name, race, profession, level, gold, health, maxhealth, inventory, mainweapon):
+    def __init__(self, name, race, profession, level, gold, health, maxhealth, inventory, mainweapon, mainlocation):
         self.name = name
         self.race = race
         self.profession = profession
@@ -98,6 +98,7 @@ class Humanoid:
         self.maxhealth = maxhealth
         self.inventory = inventory
         self.mainweapon = mainweapon
+        self.mainlocation = mainlocation
 
     def checkLevel(self):
         if self.level == 1:
@@ -125,7 +126,7 @@ class Humanoid:
       if encounterChance <= player.location.monster_rating:
         Start_Fight()
         
-player = Humanoid(None, None, None, 1, 0, 0, 0, [], None)
+player = Humanoid(None, None, None, 1, 0, 0, 0, [], None, None)
 
 
 #######Creation of Objects#######
@@ -231,7 +232,7 @@ cratherruins = SubLocation("Crather Ruins", None, 5, [cratherruins_skeleton_conf
 
 
 #########################----LOCATIONS----##############################
-crathercastle = Location("Crather Castle", None, None, None, None, None)
+crathercastle = Location("Crather Castle", crathertavern, crathershop, cratherdungeon, cratherplains, cratherruins)
 fellrykespire = Location("FellRyke Spire", None, None, None, None, None)
 
 
@@ -239,6 +240,7 @@ fellrykespire = Location("FellRyke Spire", None, None, None, None, None)
 
 ###For testing purposes these initial stats will be hardcoded // This is just to give our player a weapon to test combat with 
 myMonster = None
+player.mainlocation = crathercastle
 player.location = cratherdungeon
 myMonster = Generate_Monster(player.location.monster[0])
 
