@@ -119,7 +119,9 @@ fellrykespire = Location("FellRyke Spire", None, None, None, None, None)
 
 
 
-###For testing purposes these initial stats will be hardcoded
+###For testing purposes these initial stats will be hardcoded // This is just to give our player a weapon to test combat with 
+myMonster = None
 player.location = cratherdungeon
-
+myMonster = Generate_Monster(player.location.monster[0])
+player.mainweapon = Generate_Weapon(myMonster)
 
