@@ -1,5 +1,3 @@
-from __init__ import *
-from MonsterType import *
 import random
 
 class Monster:

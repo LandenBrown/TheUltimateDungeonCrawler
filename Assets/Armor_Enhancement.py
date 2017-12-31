@@ -1,4 +1,4 @@
-from __init__ import *
+
 
 class Armor_Enhancement:
 	def __init__(self, name, hp_bonus, damage_resistance, player_speed_modifier):

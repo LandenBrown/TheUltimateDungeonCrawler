@@ -1,4 +1,3 @@
-from __init__ import *
 
 # I decided part way though this that we will want both weapon and armor enhancement's.
 class Monster_Enhancement:

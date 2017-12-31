@@ -1,6 +1,3 @@
-from __init__ import *
-from Weapon import *
-from Object_Creation import *
 
 import random
 

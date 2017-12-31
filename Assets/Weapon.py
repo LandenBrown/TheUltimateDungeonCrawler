@@ -1,4 +1,4 @@
-from __init__ import *
+
 
 class Weapon:
 	def __init__(self, name, damage, swing_speed, level, durability, cost):

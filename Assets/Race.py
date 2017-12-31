@@ -1,4 +1,3 @@
-from __init__ import *
 
 class Race:
         def __init__(self, name, hpbonus, swingbonus):

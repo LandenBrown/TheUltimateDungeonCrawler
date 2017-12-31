@@ -1,4 +1,3 @@
-from __init__ import *
 
 class Armor:
         def __init__(self, name, hpbonus, cost, enhancement):

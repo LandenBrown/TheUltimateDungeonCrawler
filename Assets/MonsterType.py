@@ -1,5 +1,3 @@
-from __init__ import *
-from Monster import *
 
 class MonsterBreed:
     def __init__(self, name, attack1, attack2, attack3, attack4, attack5, enhancement):
