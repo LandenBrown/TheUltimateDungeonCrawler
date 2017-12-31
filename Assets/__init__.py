@@ -10,3 +10,5 @@ from Armor_Enhancement import *
 from Armor import *
 from Engine_Parts import *
 from Resource import *
+from Monster_Enhancement import *
+from Elemental_Type import *

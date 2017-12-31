@@ -1,5 +1,15 @@
-from __init__ import *
 
+
+
+
+
+
+class Game_Time:
+        def __init__(self, day, year):
+                self.day = day
+                self.year = year
+                
+game_clock = Game_Time(1, 350)
 		
 def Engine_Start_Init():
         ############################################################################
@@ -34,3 +44,26 @@ def Engine_Start_Init():
         ############################################################################
         ################################----DEFINING ARMOR VALUES---####################
         ############################################################################
+
+
+##class Sword:
+##        def __init__(self, damage, cost):
+##                self.damage = damage
+##                self.cost = cost
+##
+##
+##def Get_Drop_Config(m):
+##        print "placeholder"
+##        
+##        
+##
+######MIND FUCKING BLOWNNNNNNN
+##def Generate_Weapon(d, c):
+##        neweapon = Sword(d, c)
+##        return neweapon
+
+###BRAIN STORMING
+###player.weapon = Generate_Weapon(d, c)
+
+##arrayof array // this Type of monster drops these
+# monster loot drop [[], [], []]  

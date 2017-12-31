@@ -8,6 +8,7 @@ from Race import *
 from Resource import *
 from Monster_Enhancement import *
 from Elemental_Type import *
+from Engine_Parts import *
 
 #######Creation of Objects#######
 
