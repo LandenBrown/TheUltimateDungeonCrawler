@@ -12,7 +12,7 @@ def mainEngine():
         mainmenu = easygui.buttonbox(
             "Location: " + Assets.Object_Creation.player.location.name + ". What would you like to do?",
             "The Ultimate Dungeon Crawler",
-            ["Explore", "Shop", "Tavern", "Save", "Quit To Menu"])
+            ["Explore", "Shop", "Tavern", "Travel", "Save", "Quit To Menu"])
         if mainmenu == "Explore":
             explorechoice = easygui.buttonbox("Where would you like to explore?", "The Ultimate Dungeon Crawler",
                               [Assets.Object_Creation.player.mainlocation.sub1.name, Assets.Object_Creation.player.mainlocation.sub2.name, Assets.Object_Creation.player.mainlocation.sub2.name])
@@ -70,6 +70,8 @@ def mainEngine():
             Assets.Object_Creation.Start_Shop()
         if mainmenu == "Tavern":
             easygui.msgbox("You walk into the tavern to see the hustle of many townfolk")
+        if mainmenu == "Travel":
+            easygui.msgbox("Where would you like to travel?")
         if mainmenu == "Save":
             easygui.msgbox("You just saved your game!")
         if mainmenu == "Quit To Menu":
