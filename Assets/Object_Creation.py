@@ -13,6 +13,8 @@ from Engine_Parts import *
 #######Creation of Objects#######
 
 
+
+
 ##########################---ELEMENTAL TYPES---########################
 fire_element = Elemental_Type("Fire", 1)
 water_element = Elemental_Type("Water", 1)
@@ -56,7 +58,10 @@ claw_bite = AttackType("Claw and Bite", "lunges at you, swipes his claws against
                        2, 4)
 
 ##########################---MONSTER BREEDS---##########################
-earthen = MonsterBreed("Earthen", claw, bite, trip, howl, claw_bite, flesh)
+wolf_breed = MonsterBreed("Wolf", claw, bite, trip, howl, claw_bite, fire_element)
+goblin_breed = MonsterBreed("Goblin", claw, bite, trip, howl, claw_bite, fire_element)
+skeleton_breed = MonsterBreed("Skeleton", claw, bite, trip, howl, claw_bite, fire_element)
+
 
 #########################----LOCATION ASSETS----#########################
 
@@ -68,20 +73,6 @@ fellrykeshop = Shop("FellRyke Spire Market", [])
       #######TAVERNS#####
 crathertavern = Tavern("Crather Castle Tavern", None, None)
 fellryketavern = Tavern("FellRyke Spire Tavern", None, None)
-
-
-#########################----SUB LOCATIONS----##########################
-cratherdungeon = SubLocation("Crather Castle Dungeon", None, None, [])
-cratherplains = SubLocation("Crather Plains", None, None, [])
-cratherruins = SubLocation("Crather Ruins", None, None, [])
-
-
-
-#########################----LOCATIONS----##############################
-crathercastle = Location("Crather Castle", None, None, None, None, None)
-fellrykespire = Location("FellRyke Spire", None, None, None, None, None)
-
-
 
 
 
@@ -105,6 +96,28 @@ oak = Resource("Oak", wood, 2)
 #
 marigold = Resource("Marigold", plant, 8)
 aloe = Resource("Aloe", plant, 15)
+
+
+###MONSTER CONIFGS
+cratherdungeon_wolf_config = ["Wolf", 1, 1, 1, 1, 1, wolf_breed, 1, None, None]
+cratherplains_goblin_config = ["Goblin", 1, 1, 1, 1, 1, goblin_breed, 1, None, None]
+cratherruins_skeleton_config =  ["skeleton", 1, 1, 1, 1, 1, skeleton_breed, 1, None, None]
+
+
+###CRATHER CASTLE
+
+#########################----SUB LOCATIONS----##########################
+cratherdungeon = SubLocation("Crather Castle Dungeon", None, 3, [cratherdungeon_wolf_config])
+cratherplains = SubLocation("Crather Plains", None, 3, [cratherplains_goblin_config])
+cratherruins = SubLocation("Crather Ruins", None, 5, [cratherruins_skeleton_config])
+
+
+
+#########################----LOCATIONS----##############################
+crathercastle = Location("Crather Castle", None, None, None, None, None)
+fellrykespire = Location("FellRyke Spire", None, None, None, None, None)
+
+
 
 
 
