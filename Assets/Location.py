@@ -18,9 +18,10 @@ class SubLocation:
                 self.monster_rating = monster_rating
                 self.monster = monster
 class Shop:
-        def __init__(self, name, items):
+        def __init__(self, name, wconifg, aconfig):
                 self.name = name
-                self.items = items
+                self.wconfig = wconifg
+                self.aconfig = aconfig
 class Tavern:
         def __init__(self, name, owner, npc):
                 self.name = name

@@ -67,7 +67,7 @@ def mainEngine():
             Assets.Object_Creation.player.explore()
 
         if mainmenu == "Shop":
-            easygui.msgbox("What would you like to buy?")
+            Assets.Object_Creation.Start_Shop()
         if mainmenu == "Tavern":
             easygui.msgbox("You walk into the tavern to see the hustle of many townfolk")
         if mainmenu == "Save":

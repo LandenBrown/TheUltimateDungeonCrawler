@@ -65,7 +65,12 @@ def Generate_Weapon(m):
     easygui.msgbox("The " + m.name +" dropped you a level " + str(weapon1.level) + " " + weapon1.name + "!")
     easygui.msgbox("This weapon does " + str(weapon1.damage) + " damage!")
     return weapon1
-####
+def Buy_Weapon(s):
+    shopweapon = Weapon(s.wconfig[0], s.wconfig[1], s.wconfig[2], s.wconfig[3], s.wconfig[4], s.wconfig[5])
+    buy = easygui.buttonbox("Are you sure you want to buy and equip this weapon?", "Shop",
+                            ("Yes", "No"))
+    if buy == "Yes":
+        return shopweapon
 def Generate_Armor(m):
     armor1 = Armor(m.adropconfig)
     return armor1
@@ -85,8 +90,16 @@ def Start_Fight():
         if player.health <= 0:
             easygui.msgbox("You have died!")
             break
-            easygui.msgbox(myMonster.name + " health: " + str(myMonster.health) + " +|+ Player health: " + str(player.health) + "/" + str(player.maxhealth))
+        easygui.msgbox(myMonster.name + " health: " + str(myMonster.health) + " +|+ Player health: " + str(player.health) + "/" + str(player.maxhealth))
 ###
+def Start_Shop():
+    shopchoice = easygui.choicebox("Please select an item", "Shop",
+                                   [player.mainlocation.shop.wconfig[0], player.mainlocation.shop.aconfig[0]])
+    if shopchoice == player.mainlocation.shop.wconfig[0]:
+        player.mainweapon = Buy_Weapon(player.mainlocation.shop)
+    if shopchoice == player.mainlocation.shop.aconfig[0]:
+        player.mainweapon = Buy_Weapon(player.mainlocation.shop)
+
 
 class Humanoid:
     def __init__(self, name, race, profession, level, gold, health, maxhealth, inventory, mainweapon, mainlocation):
@@ -185,8 +198,8 @@ skeleton_breed = MonsterBreed("Skeleton", claw, bite, trip, howl, claw_bite, fir
 #########################----LOCATION ASSETS----#########################
 
       #######SHOPS#######
-crathershop = Shop("Crather Castle Market", [])
-fellrykeshop = Shop("FellRyke Spire Market", [])
+crathershop = Shop("Crather Castle Market", ["Iron Longsword", 3, 3, 1, 30, 5], ["Iron Spear", 3, 3, 1, 30, 5])
+fellrykeshop = Shop("FellRyke Spire Market", ["Iron Longsword", 3, 3, 1, 30, 5], ["Iron Longsword", 3, 3, 1, 30, 5])
 
 
       #######TAVERNS#####
