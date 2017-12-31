@@ -34,6 +34,23 @@ class Game_Time:
 				#Significant world changes
                 
 game_clock = Game_Time(1, 350)
+
+def Generate_Monster(cnfg):
+    monster1 = Monster(cnfg[0], cnfg[1], cnfg[2], cnfg[3], cnfg[4], cnfg[5], cnfg[6], cnfg[7], cnfg[8], cnfg[9]) #Monster is created based on location configs // in our real game it would be like player.location.sublocation.monsterconfig or something
+    monster1.getConfigs() #We load the monster drop configurations
+    return monster1 #This creates a location for this data outside of the scope and into a public memory status to be called-by-reference - which is essential
+
+
+def Generate_Weapon(m):
+    weapon1 = Weapon(m.wdropconfig[0], m.wdropconfig[1], m.wdropconfig[2], m.wdropconfig[3], m.wdropconfig[4], m.wdropconfig[5]) #What kind of weapon are we dropping is developed on the monsters config stats
+    weapon1.getConfigs() #Load the weapon stats
+    print "The " + m.name +" dropped you a level " + str(weapon1.level) + " " + weapon1.name + "!"
+    print "This weapon does " + str(weapon1.damage) + " damage!"
+    return weapon1
+####
+def Generate_Armor(m):
+    armor1 = armor(m.adropconfig)
+    return armor1
 		
 def Engine_Start_Init():
         ############################################################################
