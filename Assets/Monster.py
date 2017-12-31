@@ -3,7 +3,7 @@ from MonsterType import *
 import random
 
 class Monster:
-    def __init__(self, name, health, maxhealth, damage, golddrop, xpdrop, monsterbreed, swingspeed):
+    def __init__(self, name, health, maxhealth, damage, golddrop, xpdrop, monsterbreed, swingspeed, loot):
         self.name = name
         self.health = health
         self.maxhealth = maxhealth
@@ -12,6 +12,7 @@ class Monster:
         self.xpdrop = xpdrop
         self.monsterbreed = monsterbreed
         self.swingspeed = swingspeed
+        self.loot = loot
 
 
     def monsterHit(self, p):
