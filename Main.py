@@ -14,8 +14,58 @@ def mainEngine():
             "The Ultimate Dungeon Crawler",
             ["Explore", "Shop", "Tavern", "Save", "Quit To Menu"])
         if mainmenu == "Explore":
-            easygui.buttonbox("Where would you like to explore?", "The Ultimate Dungeon Crawler",
-                              ["empty"])
+            explorechoice = easygui.buttonbox("Where would you like to explore?", "The Ultimate Dungeon Crawler",
+                              [Assets.Object_Creation.player.mainlocation.sub1.name, Assets.Object_Creation.player.mainlocation.sub2.name, Assets.Object_Creation.player.mainlocation.sub2.name])
+            if explorechoice == Assets.Object_Creation.player.mainlocation.sub1.name:
+                Assets.Object_Creation.player.location = Assets.Object_Creation.player.mainlocation.sub1
+                Assets.Object_Creation.player.explore()
+                campchoice = None
+                while campchoice != "Return to Town":
+                    campchoice = easygui.buttonbox("You venture your way to the " + explorechoice,
+                                                   "The Ultimate Dungeon Crawler",
+                                                   ["Take a closer look around", "Camp", "Return to Town"])
+                    if campchoice == "Take a closer look around":
+                        easygui.msgbox("You take a closer look around")
+                    if campchoice == "Camp":
+                        easygui.msgbox("You set up camp, and attempt to make it through the night alive...")
+                        Assets.Object_Creation.player.explore()
+                        easygui.msgbox("You make it through the night alive")
+                    if campchoice == "Return to Town":
+                        easygui.msgbox("You pack your things and set out to Town")
+            if explorechoice == Assets.Object_Creation.player.mainlocation.sub2.name:
+                Assets.Object_Creation.player.location = Assets.Object_Creation.player.mainlocation.sub2
+                Assets.Object_Creation.player.explore()
+                campchoice = None
+                while campchoice != "Return to Town":
+                    campchoice = easygui.buttonbox("You venture your way to the " + explorechoice,
+                                                   "The Ultimate Dungeon Crawler",
+                                                   ["Take a closer look around", "Camp", "Return to Town"])
+                    if campchoice == "Take a closer look around":
+                        easygui.msgbox("You take a closer look around")
+                    if campchoice == "Camp":
+                        easygui.msgbox("You set up camp, and attempt to make it through the night alive...")
+                        Assets.Object_Creation.player.explore()
+                        easygui.msgbox("You make it through the night alive")
+                    if campchoice == "Return to Town":
+                        easygui.msgbox("You pack your things and set out to Town")
+            if explorechoice == Assets.Object_Creation.player.mainlocation.sub3.name:
+                Assets.Object_Creation.player.location = Assets.Object_Creation.player.mainlocation.sub3
+                Assets.Object_Creation.player.explore()
+                campchoice = None
+                while campchoice != "Return to Town":
+                    campchoice = easygui.buttonbox("You venture your way to the " + explorechoice,
+                                                   "The Ultimate Dungeon Crawler",
+                                                   ["Take a closer look around", "Camp", "Return to Town"])
+                    if campchoice == "Take a closer look around":
+                        easygui.msgbox("You take a closer look around")
+                    if campchoice == "Camp":
+                        easygui.msgbox("You set up camp, and attempt to make it through the night alive...")
+                        Assets.Object_Creation.player.explore()
+                        easygui.msgbox("You make it through the night alive")
+                    if campchoice == "Return to Town":
+                        easygui.msgbox("You pack your things and set out to Town")
+            Assets.Object_Creation.player.explore()
+
         if mainmenu == "Shop":
             easygui.msgbox("What would you like to buy?")
         if mainmenu == "Tavern":
@@ -24,7 +74,7 @@ def mainEngine():
             easygui.msgbox("You just saved your game!")
         if mainmenu == "Quit To Menu":
             break
-
+        Assets.Object_Creation.player.location = Assets.Object_Creation.player.mainlocation
 
 def loadGame():
     easygui.msgbox("This is where you will select a save!")

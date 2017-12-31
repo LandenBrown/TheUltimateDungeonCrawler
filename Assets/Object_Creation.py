@@ -11,7 +11,9 @@ from Armor import *
 from Resource import *
 from Monster_Enhancement import *
 from Elemental_Type import *
-import random, time
+import random
+import easygui
+from easygui import *
 
 
 class Game_Time:
@@ -60,8 +62,8 @@ def Generate_Monster(cnfg):
 def Generate_Weapon(m):
     weapon1 = Weapon(m.wdropconfig[0], m.wdropconfig[1], m.wdropconfig[2], m.wdropconfig[3], m.wdropconfig[4], m.wdropconfig[5]) #What kind of weapon are we dropping is developed on the monsters config stats
     weapon1.getConfigs() #Load the weapon stats
-    print "The " + m.name +" dropped you a level " + str(weapon1.level) + " " + weapon1.name + "!"
-    print "This weapon does " + str(weapon1.damage) + " damage!"
+    easygui.msgbox("The " + m.name +" dropped you a level " + str(weapon1.level) + " " + weapon1.name + "!")
+    easygui.msgbox("This weapon does " + str(weapon1.damage) + " damage!")
     return weapon1
 ####
 def Generate_Armor(m):
@@ -69,23 +71,22 @@ def Generate_Armor(m):
     return armor1
 ####
 def Start_Fight():
-  player.checkLevel()
-  myMonster = Generate_Monster(player.location.monster[0])
-  print "You have encountered a level " + str(myMonster.level) + " " + myMonster.name + "!"
-  while myMonster.health != "Dead": 
-    print "press anything to hit the monster!"
-    raw_input()
-    player.Hit(myMonster)
-    if myMonster.health <= 0:
-      print "You have killed the " + myMonster.name
-      Generate_Weapon(myMonster)
-      break
-    myMonster.Hit(player)
-    if player.health <= 0:
-      print "You have died!"
-      break
-    print myMonster.name + " health: " + str(myMonster.health) + " +|+ Player health: " + str(player.health) + "/" + str(player.maxhealth)
-####
+    player.checkLevel()
+    myMonster = Generate_Monster(player.location.monster[0])
+    easygui.msgbox("You have encountered a level " + str(myMonster.level) + " " + myMonster.name + "!")
+    while myMonster.health != "Dead":
+        easygui.msgbox("You hit the monster!")
+        player.Hit(myMonster)
+        if myMonster.health <= 0:
+            easygui.msgbox("You have killed the " + myMonster.name)
+            Generate_Weapon(myMonster)
+            break
+        myMonster.Hit(player)
+        if player.health <= 0:
+            easygui.msgbox("You have died!")
+            break
+            easygui.msgbox(myMonster.name + " health: " + str(myMonster.health) + " +|+ Player health: " + str(player.health) + "/" + str(player.maxhealth))
+###
 
 class Humanoid:
     def __init__(self, name, race, profession, level, gold, health, maxhealth, inventory, mainweapon, mainlocation):
@@ -117,7 +118,7 @@ class Humanoid:
     def Hit(self, m):
         #here we are going to make the function to hit the monster, so we can call it during game
         m.health = m.health - self.mainweapon.damage
-        print "You swing at the monster and deal " + str(self.mainweapon.damage) + " damage!"
+        easygui.msgbox("You swing at the monster and deal " + str(self.mainweapon.damage) + " damage!")
         ##if player.damagedealt < 0: #making sure that we never do negative damage    ############## I COMMENTED THIS OUT BECAUSE NOW DAMAGE SHOULD NEVER BE NEGATIVE DUE TO THE NEW DAMAGE_BUFFER CALCULATIONS - SCORE!                                                                     
         ##  damagedealt = 0                                                                                                                             
     
@@ -241,9 +242,8 @@ fellrykespire = Location("FellRyke Spire", None, None, None, None, None)
 ###For testing purposes these initial stats will be hardcoded // This is just to give our player a weapon to test combat with 
 myMonster = None
 player.mainlocation = crathercastle
-player.location = cratherdungeon
-myMonster = Generate_Monster(player.location.monster[0])
-
+player.location = crathercastle
+myMonster = Generate_Monster(player.location.sub1.monster[0])
 player.mainweapon = Generate_Weapon(myMonster)
 
 
