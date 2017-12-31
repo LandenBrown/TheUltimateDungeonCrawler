@@ -14,7 +14,6 @@ from Engine_Parts import *
 
 
 
-
 ##########################---ELEMENTAL TYPES---########################
 fire_element = Elemental_Type("Fire", 1)
 water_element = Elemental_Type("Water", 1)
@@ -120,6 +119,7 @@ fellrykespire = Location("FellRyke Spire", None, None, None, None, None)
 
 
 
-
+###For testing purposes these initial stats will be hardcoded
+player.location = cratherdungeon
 
 
