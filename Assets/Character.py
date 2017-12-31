@@ -5,7 +5,7 @@ import random
 
 
 class Humanoid:
-    def __init__(self, name, race, profession, level, gold, health, maxhealth, inventory, mainweapon, damagedealt):
+    def __init__(self, name, race, profession, level, gold, health, maxhealth, inventory, mainweapon):
         self.name = name
         self.race = race
         self.profession = profession
@@ -15,7 +15,6 @@ class Humanoid:
         self.maxhealth = maxhealth
         self.inventory = inventory
         self.mainweapon = mainweapon
-        self.damagedealt = damagedealt
 
     def checkLevel(self):
         if self.level == 1:
@@ -31,12 +30,17 @@ class Humanoid:
 
         self.health = self.maxhealth
 
-    def Hit(self):
+    def Hit(self, m):
         #here we are going to make the function to hit the monster, so we can call it during game
-        self.damagedealt = random.randint(self.mainweapon.damage, self.mainweapon.damage + self.mainweapon.max_damage_buffer)
+        m.health = m.health - self.mainweapon.damage
+        print "You swing at the monster and deal " + str(self.mainweapon.damage) + " damage!"
         ##if player.damagedealt < 0: #making sure that we never do negative damage    ############## I COMMENTED THIS OUT BECAUSE NOW DAMAGE SHOULD NEVER BE NEGATIVE DUE TO THE NEW DAMAGE_BUFFER CALCULATIONS - SCORE!                                                                     
         ##  damagedealt = 0                                                                                                                             
-        print self.damagedealt
+    
+    def explore(self):
+      encounterChance = random.randint(1, 10)
+      if encounterChance <= player.location.monster_rating:
+        Start_Fight()
         
 
 
