@@ -2,7 +2,7 @@ import random
 import easygui
 from easygui import *
 class Monster:
-    def __init__(self, name, level, health, damage, golddrop, xpdrop, monsterbreed, swingspeed, wdropconfig, adropconfig):
+    def __init__(self, name, level, health, damage, golddrop, xpdrop, monsterbreed, swingspeed, wdropconfig, adropconfig, prefix):
         self.name = name
         self.level = level
         self.health = health
@@ -13,55 +13,74 @@ class Monster:
         self.swingspeed = swingspeed
         self.wdropconfig = wdropconfig
         self.adropconfig = adropconfig
+        self.prefix = prefix
     def getConfigs(self): #We will create the configs for every monster in the game in this here little config generator, NO MORE GLOBAL OBJECTS!!! WE CAN ADD MONSTERS TO THE GAME BY ADDING THEM HERE AND TO THE LOCATION CONFIGS!
         ### Wolf
         if self.level == 1 and self.name == "Wolf":
-            self.wdropconfig = ["Iron Longsword", 3, 3, 2, 30, 5]
+            self.wdropconfig = ["Iron Longsword", 3, 3, 1, 30, 5]
             self.health = 10
             self.xpdrop = 1
             self.golddrop = 1
+            self.prefix = "Mangy " # Has to have a space after the last string character before the quote!!!!!!!!!!!!!!!!!!!!!!!
+            self.name = self.prefix + self.name
         if self.level == 2 and self.name == "Wolf":
             self.wdropconfig = ["Iron Longsword", 3, 3, 2, 30, 5]
             self.health = 25
             self.xpdrop = 2
             self.golddrop = 4
+            self.prefix = "Vicious "
+            self.name = self.prefix + self.name
         if self.level == 3 and self.name == "Wolf":
             self.wdropconfig = ["Iron Longsword", 3, 3, 3, 30, 5]
             self.health = 35
             self.xpdrop = 7
             self.golddrop = 9
+            self.prefix = "Alpha"
+            self.name = self.prefix + self.name
         ### Golbin
         if self.level == 1 and self.name == "Goblin":
             self.wdropconfig = ["Iron Spear", 3, 3, 1, 30, 5]
             self.health = 15
             self.xpdrop = 1
             self.golddrop = 2
+            self.prefix = "Malnourished "
+            self.name = self.prefix + self.name
         if self.level == 2 and self.name == "Goblin":
             self.wdropconfig = ["Iron Spear", 3, 3, 2, 30, 5]
             self.health = 30
             self.xpdrop = 3
             self.golddrop = 15
+            self.prefix = "Battle Hardened "
+            self.name = self.prefix + self.name
         if self.level == 3 and self.name == "Goblin":
             self.wdropconfig = ["Iron Spear", 3, 3, 3, 30, 5]
             self.health = 50
             self.xpdrop = 6
             self.golddrop = 30
+            self.prefix = "Armored "
+            self.name = self.prefix + self.name
         ### Skeleton
         if self.level == 1 and self.name == "Skeleton":
-            self.wdropconfig = ["Iron Hammer", 3, 3, 3, 30, 5]
+            self.wdropconfig = ["Iron Hammer", 3, 3, 1, 30, 5]
             self.health = 5
             self.xpdrop = 1
             self.golddrop = 1
+            self.prefix = "Creeking "
+            self.name = self.prefix + self.name
         if self.level == 2 and self.name == "Skeleton":
             self.wdropconfig = ["Iron Hammer", 3, 3, 2, 30, 5]
             self.health = 20
             self.xpdrop = 2
             self.golddrop = 3
+            self.prefix = "Disciplined "
+            self.name = self.prefix + self.name
         if self.level == 3 and self.name == "Skeleton":
             self.wdropconfig = ["Iron Hammer", 3, 3, 3, 30, 5]
             self.health = 35
             self.xpdrop = 2
             self.golddrop = 3
+            self.prefix = "Enraged "
+            self.name = self.prefix + self.name
             
     def Hit(self, p):
         pickanattack = random.randint(1, 5)

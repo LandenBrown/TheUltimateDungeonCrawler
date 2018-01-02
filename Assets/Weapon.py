@@ -27,12 +27,35 @@ class Weapon:
         ### Iron Hammer configs
         if self.level == 1 and self.name == "Iron Hammer":
             self.durability = 60
-            self.damage = 5
+            self.damage = 2
         if self.level == 2 and self.name == "Iron Hammer":
             self.durability = 60
-            self.damage = 6
+            self.damage = 4
         if self.level == 3 and self.name == "Iron Hammer":
             self.durability = 60
-            self.damage = 7
+            self.damage = 6
+        if self.level == 4 and self.name == "Iron Hammer":
+            self.durability = 60
+            self.damage = 9
+        if self.level == 5 and self.name == "Iron Hammer":
+            self.durability = 60
+            self.damage = 12
+        ### Iron Spear configs
+        if self.level == 1 and self.name == "Iron Spear":
+            self.durability = 60
+            self.damage = 1
+        if self.level == 2 and self.name == "Iron Spear":
+            self.durability = 60
+            self.damage = 3
+        if self.level == 3 and self.name == "Iron Spear":
+            self.durability = 60
+            self.damage = 6
+        if self.level == 4 and self.name == "Iron Spear":
+            self.durability = 60
+            self.damage = 9
+        if self.level == 5 and self.name == "Iron Spear":
+            self.durability = 60
+            self.damage = 12
 
-##### FUTURE CHANGES - MAKE ENHANCEMENTS MODIFY THE DAMAGE BUFFER AND THE SWING BUFFER
+
+

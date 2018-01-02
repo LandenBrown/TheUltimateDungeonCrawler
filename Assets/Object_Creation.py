@@ -54,7 +54,7 @@ class Game_Time:
 game_clock = Game_Time(1, 350)
 ####
 def Generate_Monster(cnfg):
-    monster1 = Monster(cnfg[0], cnfg[1], cnfg[2], cnfg[3], cnfg[4], cnfg[5], cnfg[6], cnfg[7], cnfg[8], cnfg[9]) #Monster is created based on location configs // in our real game it would be like player.location.sublocation.monsterconfig or something
+    monster1 = Monster(cnfg[0], cnfg[1], cnfg[2], cnfg[3], cnfg[4], cnfg[5], cnfg[6], cnfg[7], cnfg[8], cnfg[9], cnfg[10]) #Monster is created based on location configs // in our real game it would be like player.location.sublocation.monsterconfig or something
     monster1.getConfigs() #We load the monster drop configurations
     return monster1 #This creates a location for this data outside of the scope and into a public memory status to be called-by-reference - which is essential
 
@@ -239,13 +239,17 @@ demonize = AttackType("Demonize", "stares directly into your soul, dazing you an
 wolf_breed = MonsterBreed("Wolf", claw, bite, trip, howl, claw_bite, fire_element)
 goblin_breed = MonsterBreed("Goblin", scratch, screech, punch, swing, throw, fire_element)
 skeleton_breed = MonsterBreed("Skeleton", sword_swing, shield_bash, sword_slap, sword_throw, demonize, fire_element)
+bloodwizard_breed = MonsterBreed("Blood Wizard", None, None, None, None, None, None)
+necromancer_breed = MonsterBreed("Necromancer", None, None, None, None, None, None)
+voidchancellor_breed = MonsterBreed("Void Chancellor", None, None, None, None, None, None)
+
 
 
 #########################----LOCATION ASSETS----#########################
 
       #######SHOPS#######
 crathershop = Shop("Crather Castle Market", ["Iron Longsword", 3, 3, 1, 30, 5], ["Iron Spear", 3, 3, 1, 30, 5])
-fellrykeshop = Shop("FellRyke Spire Market", ["Iron Longsword", 3, 3, 1, 30, 5], ["Iron Longsword", 3, 3, 1, 30, 5])
+fellrykeshop = Shop("FellRyke Spire Market", ["Iron Spear", 3, 3, 1, 30, 5], ["Iron Hammer", 3, 3, 1, 30, 5])
 
 
       #######TAVERNS#####
@@ -277,9 +281,12 @@ aloe = Resource("Aloe", plant, 15)
 
 
 ###MONSTER CONIFGS
-cratherdungeon_wolf_config = ["Wolf", 1, 1, 1, 1, 1, wolf_breed, 1, None, None]
-cratherplains_goblin_config = ["Goblin", 1, 1, 1, 1, 1, goblin_breed, 1, None, None]
-cratherruins_skeleton_config =  ["Skeleton", 1, 1, 1, 1, 1, skeleton_breed, 1, None, None]
+cratherdungeon_wolf_config = ["Wolf", 1, 1, 1, 1, 1, wolf_breed, 1, None, None, None]
+cratherplains_goblin_config = ["Goblin", 1, 1, 1, 1, 1, goblin_breed, 1, None, None, None]
+cratherruins_skeleton_config = ["Skeleton", 1, 1, 1, 1, 1, skeleton_breed, 1, None, None, None]
+fellrykemanor_bloodwizard_config = ["Blood Wizard", 1, 1, 1, 1, 1, bloodwizard_breed, 1, None, None, None]
+fellrykemagetower_voidchancellor_config = ["Void Chancellor", 1, 1, 1, 1, 1, voidchancellor_breed, 1, None, None, None]
+fellrykegraveyard_necromancer_config = ["Skeleton", 1, 1, 1, 1, 1, necromancer_breed, 1, None, None, None]
 
 
 ###CRATHER CASTLE
@@ -288,12 +295,14 @@ cratherruins_skeleton_config =  ["Skeleton", 1, 1, 1, 1, 1, skeleton_breed, 1, N
 cratherdungeon = SubLocation("Crather Castle Dungeon", None, 3, [cratherdungeon_wolf_config])
 cratherplains = SubLocation("Crather Plains", None, 3, [cratherplains_goblin_config])
 cratherruins = SubLocation("Crather Ruins", None, 5, [cratherruins_skeleton_config])
-
+fellrykemanor = SubLocation("FellRyke Manor", None, 5, [fellrykemanor_bloodwizard_config])
+fellrykemagetower = SubLocation("FellRyke Mage Tower", None, 5, [fellrykemagetower_voidchancellor_config])
+fellrykegraveyard = SubLocation("FellRyke Grave Yard", None, 5, [fellrykegraveyard_necromancer_config])
 
 
 #########################----LOCATIONS----##############################
 crathercastle = Location("Crather Castle", crathertavern, crathershop, cratherdungeon, cratherplains, cratherruins)
-fellrykespire = Location("FellRyke Spire", None, None, None, None, None)
+fellrykespire = Location("FellRyke Spire", fellryketavern, fellrykeshop, fellrykemanor, fellrykemagetower, fellrykegraveyard)
 
 
 
