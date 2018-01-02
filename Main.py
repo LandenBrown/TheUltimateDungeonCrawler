@@ -71,7 +71,13 @@ def mainEngine():
         if mainmenu == "Tavern":
             easygui.msgbox("You walk into the tavern to see the hustle of many townfolk")
         if mainmenu == "Travel":
-            easygui.msgbox("Where would you like to travel?")
+            travelchoice = easygui.choicebox("Where would you like to travel?", "TUDC",
+                              ["Crather Castle", "FellRyke Spire"])
+            if travelchoice == "Crather Castle":
+                Assets.Object_Creation.player.mainlocation = Assets.Object_Creation.crathercastle
+                easygui.msgbox("You have arrived at Crather Castle!")
+            if travelchoice == "FellRyke Spire":
+                Assets.Object_Creation.player.mainlocation = Assets.Object_Creation.fellrykespire
         if mainmenu == "Save":
             easygui.msgbox("You just saved your game!")
         if mainmenu == "Quit To Menu":

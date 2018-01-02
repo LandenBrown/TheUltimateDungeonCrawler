@@ -16,6 +16,8 @@ import easygui
 from easygui import *
 
 
+
+
 class Game_Time:
         def __init__(self, day, year):
                 self.day = day
@@ -303,7 +305,7 @@ cratherplains_goblin_config = ["Goblin", 1, 1, 1, 1, 1, goblin_breed, 1, None, N
 cratherruins_skeleton_config = ["Skeleton", 1, 1, 1, 1, 1, skeleton_breed, 1, None, None, None]
 fellrykemanor_bloodwizard_config = ["Blood Wizard", 1, 1, 1, 1, 1, bloodwizard_breed, 1, None, None, None]
 fellrykemagetower_voidchancellor_config = ["Void Chancellor", 1, 1, 1, 1, 1, voidchancellor_breed, 1, None, None, None]
-fellrykegraveyard_necromancer_config = ["Skeleton", 1, 1, 1, 1, 1, necromancer_breed, 1, None, None, None]
+fellrykegraveyard_necromancer_config = ["Necromancer", 1, 1, 1, 1, 1, necromancer_breed, 1, None, None, None]
 
 
 ###CRATHER CASTLE
