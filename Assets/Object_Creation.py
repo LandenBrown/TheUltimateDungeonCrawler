@@ -232,16 +232,33 @@ demonize = AttackType("Demonize", "stares directly into your soul, dazing you an
                        "reaches both hands towards you and sucks your blood from your capillaries",
                        "raises both hands in the air, as you suddenly feel a great force pull you to your knees and begin pulling the life force from your chest",
                        5, 7)
-
+####WIZARD-LIKE MONSTER ATTACK TYPES ##################
+##DEMONIZE
+stress_mind = AttackType("Stress Mind", "holds a sinlge hand out and clenches his fist, as you feel a great pressure consume your mind",
+                       "reaches a hand to the sky, as your mind becomes unclear and you feel the blood vessels popping in your eyes",
+                       "points a finger at you as you suddenly begin to get light headed and can hear the blood in your head thicken",
+                       5, 7)
+manipulate = AttackType("Demonize", "manipulates your body to dislocate and put in place your shoulder joints",
+                       "manipulates your weapon to slice your wrists",
+                       "forces your hips to become unpostured, ripping them out of the joints",
+                       5, 7)
+void_ball = AttackType("Demonize", "suddenly summons a mysterious blue and purple ball, and hurdles it at you, throwing you 20 feet backward",
+                       "throws a ball of pure hatred and void in your direction exploding against your armor and burning your skin",
+                       "channels a ball of void energy into your armor, heating the armor to smoldering temperatures",
+                       5, 7)
+blood_curdle = AttackType("Demonize", "gazes into your soul, as you feel your blood start to thicken and curdle throughout your body",
+                       "points his staff at you, forcing your blood to ooze out of your eyes and nose",
+                       "draws a blood magic circle at your feet ripping the viens out of the bottom of your feet and through your armor",
+                       5, 7)
 
 
 ##########################---MONSTER BREEDS---##########################
 wolf_breed = MonsterBreed("Wolf", claw, bite, trip, howl, claw_bite, fire_element)
 goblin_breed = MonsterBreed("Goblin", scratch, screech, punch, swing, throw, fire_element)
 skeleton_breed = MonsterBreed("Skeleton", sword_swing, shield_bash, sword_slap, sword_throw, demonize, fire_element)
-bloodwizard_breed = MonsterBreed("Blood Wizard", None, None, None, None, None, None)
-necromancer_breed = MonsterBreed("Necromancer", None, None, None, None, None, None)
-voidchancellor_breed = MonsterBreed("Void Chancellor", None, None, None, None, None, None)
+bloodwizard_breed = MonsterBreed("Blood Wizard", demonize, stress_mind, manipulate, void_ball, blood_curdle, darkness_element)
+necromancer_breed = MonsterBreed("Necromancer", demonize, stress_mind, manipulate, void_ball, blood_curdle, darkness_element)
+voidchancellor_breed = MonsterBreed("Void Chancellor", demonize, stress_mind, manipulate, void_ball, blood_curdle, darkness_element)
 
 
 
