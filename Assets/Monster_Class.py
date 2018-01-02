@@ -16,7 +16,7 @@ class Monster:
     def getConfigs(self): #We will create the configs for every monster in the game in this here little config generator, NO MORE GLOBAL OBJECTS!!! WE CAN ADD MONSTERS TO THE GAME BY ADDING THEM HERE AND TO THE LOCATION CONFIGS!
         ### Wolf
         if self.level == 1 and self.name == "Wolf":
-            self.wdropconfig = ["Iron Longsword", 3, 3, 1, 30, 5]
+            self.wdropconfig = ["Iron Longsword", 3, 3, 2, 30, 5]
             self.health = 10
             self.xpdrop = 1
             self.golddrop = 1
@@ -48,7 +48,7 @@ class Monster:
             self.golddrop = 30
         ### Skeleton
         if self.level == 1 and self.name == "Skeleton":
-            self.wdropconfig = ["Iron Hammer", 3, 3, 1, 30, 5]
+            self.wdropconfig = ["Iron Hammer", 3, 3, 3, 30, 5]
             self.health = 5
             self.xpdrop = 1
             self.golddrop = 1

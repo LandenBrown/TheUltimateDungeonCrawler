@@ -15,7 +15,7 @@ def mainEngine():
             ["Explore", "Shop", "Tavern", "Travel", "Save", "Quit To Menu"])
         if mainmenu == "Explore":
             explorechoice = easygui.buttonbox("Where would you like to explore?", "The Ultimate Dungeon Crawler",
-                              [Assets.Object_Creation.player.mainlocation.sub1.name, Assets.Object_Creation.player.mainlocation.sub2.name, Assets.Object_Creation.player.mainlocation.sub2.name])
+                              [Assets.Object_Creation.player.mainlocation.sub1.name, Assets.Object_Creation.player.mainlocation.sub2.name, Assets.Object_Creation.player.mainlocation.sub3.name])
             if explorechoice == Assets.Object_Creation.player.mainlocation.sub1.name:
                 Assets.Object_Creation.player.location = Assets.Object_Creation.player.mainlocation.sub1
                 Assets.Object_Creation.player.explore()

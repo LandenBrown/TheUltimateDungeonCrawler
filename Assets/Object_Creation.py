@@ -60,7 +60,9 @@ def Generate_Monster(cnfg):
 
 ####
 def Generate_Weapon(m):
-    weapon1 = Weapon(m.wdropconfig[0], m.wdropconfig[1], m.wdropconfig[2], m.wdropconfig[3], m.wdropconfig[4], m.wdropconfig[5]) #What kind of weapon are we dropping is developed on the monsters config stats
+    weapon1 = Weapon(m.wdropconfig[0], m.wdropconfig[1], m.wdropconfig[2], m.wdropconfig[3], m.wdropconfig[4],
+                     m.wdropconfig[5])
+    #What kind of weapon are we dropping is developed on the monsters config stats
     weapon1.getConfigs() #Load the weapon stats
     easygui.msgbox("The " + m.name +" dropped you a level " + str(weapon1.level) + " " + weapon1.name + "!")
     easygui.msgbox("This weapon does " + str(weapon1.damage) + " damage!")
@@ -84,7 +86,7 @@ def Start_Fight():
         player.Hit(myMonster)
         if myMonster.health <= 0:
             easygui.msgbox("You have killed the " + myMonster.name)
-            Generate_Weapon(myMonster)
+            player.mainweapon = Generate_Weapon(myMonster)
             break
         myMonster.Hit(player)
         if player.health <= 0:
@@ -166,7 +168,7 @@ flesh = Monster_Enhancement("Flesh", 0, water_element, fire_element )
 ##Object rules ----
 
 
-##########################---ATTACK TYPES---###########################
+##########################---ATTACK TYPES---########################### (Name, desc1, desc2, desc3, dmg, maxdmg)
 #####WOLF-LIKE MONSTER ATTACK TYPES #############
 claw = AttackType("Claw", "lunges at you and swipes his claws against your body!",
                   "dashes at your legs while viciously penetrating its claws into your lower extremeties",
@@ -188,11 +190,55 @@ claw_bite = AttackType("Claw and Bite", "lunges at you, swipes his claws against
                        "bites your lower leg with a great force as it sinks its claws into your thigh",
                        "violently pounces at your chest, sinking its teeth into your neck and mangles your forearms with its claws",
                        2, 4)
+#####GOBLIN-LIKE MONSTER ATTACK TYPES ###########
+scratch = AttackType("Fingernail Scratch", "screams and hurdles on top of you, tearing at your flesh with its nails",
+                       "spins and scratches you with its fingeranils",
+                       "furiously charges you and begins thrashing at your skin with its sharp nails",
+                       1, 4)
+screech = AttackType("Screech", "screeches a war cry, deafening you",
+                       "puffs its chest and screeches, causing you to have major disorientation",
+                       "raises its arms to the sky and screeches to its god, giving it strength and making your ears bleed",
+                       1, 1)
+punch = AttackType("Punch", "throws a jab at you, clipping your jaw",
+                       "unexpectedly strikes you in the neck with a jab",
+                       "quickly throws a hook, landing on the lower part of your jaws, disorienting you",
+                       2, 2)
+swing = AttackType("Swing", "swings its war club at you, colliding with your armor, causing the wind to violently exit your lungs",
+                       "with great strength, swings his club against your weapon, easily out-weighing it, causing you to lose grip of your weapon",
+                       "swings his weapon at your legs, completely knocking you off your feet",
+                       2, 3)
+throw = AttackType("Trhow", "uses all its strength to hurdle its war club at you, colliding with your head, leaving you disoriented",
+                       "picks up the nearest rock and throws it in your direction, colliding with your forehead causing major bleeding",
+                       "throws its shoe at you, distracting you as rock collides with your ribs with great force",
+                       1, 3)
+#####SKELETON-LIKE MONSTER ATTACK TYPES #########
+sword_swing = AttackType("Sword Swing", "flies its sword in the air and down onto your armor, ripping the metal apart like butter",
+                       "swings its sword into the armor protecting your ribcage, causing trauma to your cartilage",
+                       "swings its sword against your forearms, leaving a massive gash, pouring blood",
+                       3, 5)
+shield_bash = AttackType("Shield Bash", "lunges towards you, shoving its shield into your sternum and shoving violently",
+                       "swings the edge of its shield into your head armor, disorienting you and causing confusion",
+                       "quickly spins and throws its shield into your platearmor, hitting with such force that it dents your armor",
+                       2, 4)
+sword_slap = AttackType("Sword Slap", "turns its sword on its side, and slaps your helmet, causing disorientation and ringing",
+                       "slaps the flat of its sword against the side of your thigh, causing you to collapse to the floor in pain",
+                       "slaps your hands with the side of its sword, immediately causing severe bruising and swellingalong your fingers",
+                       3, 3)
+sword_throw = AttackType("Sword_Throw", "winds up and throws it sword directly into your chest, causing you to pull out 3 inches of the blade from your body",
+                       "throws its sword like an axe at your legs, lacerating your shin open, exposing the bone",
+                       "wildly throws its sword at you, perfectly landing in an open spot in your armor, viciously lacerating your flesh",
+                       6, 6)
+demonize = AttackType("Demonize", "stares directly into your soul, dazing you and sucking the life force from your body",
+                       "reaches both hands towards you and sucks your blood from your capillaries",
+                       "raises both hands in the air, as you suddenly feel a great force pull you to your knees and begin pulling the life force from your chest",
+                       5, 7)
+
+
 
 ##########################---MONSTER BREEDS---##########################
 wolf_breed = MonsterBreed("Wolf", claw, bite, trip, howl, claw_bite, fire_element)
-goblin_breed = MonsterBreed("Goblin", claw, bite, trip, howl, claw_bite, fire_element)
-skeleton_breed = MonsterBreed("Skeleton", claw, bite, trip, howl, claw_bite, fire_element)
+goblin_breed = MonsterBreed("Goblin", scratch, screech, punch, swing, throw, fire_element)
+skeleton_breed = MonsterBreed("Skeleton", sword_swing, shield_bash, sword_slap, sword_throw, demonize, fire_element)
 
 
 #########################----LOCATION ASSETS----#########################
@@ -233,7 +279,7 @@ aloe = Resource("Aloe", plant, 15)
 ###MONSTER CONIFGS
 cratherdungeon_wolf_config = ["Wolf", 1, 1, 1, 1, 1, wolf_breed, 1, None, None]
 cratherplains_goblin_config = ["Goblin", 1, 1, 1, 1, 1, goblin_breed, 1, None, None]
-cratherruins_skeleton_config =  ["skeleton", 1, 1, 1, 1, 1, skeleton_breed, 1, None, None]
+cratherruins_skeleton_config =  ["Skeleton", 1, 1, 1, 1, 1, skeleton_breed, 1, None, None]
 
 
 ###CRATHER CASTLE
