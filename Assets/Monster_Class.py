@@ -81,6 +81,74 @@ class Monster:
             self.golddrop = 3
             self.prefix = "Enraged "
             self.name = self.prefix + self.name
+        ### Blood Wizard
+        if self.level == 1 and self.name == "Blood Wizard":
+            self.wdropconfig = ["Iron Hammer", 3, 3, 1, 30, 5]
+            self.health = 5
+            self.xpdrop = 1
+            self.golddrop = 1
+            self.prefix = "Apprentice "
+            self.name = self.prefix + self.name
+        if self.level == 2 and self.name == "Blood Wizard":
+            self.wdropconfig = ["Iron Hammer", 3, 3, 2, 30, 5]
+            self.health = 20
+            self.xpdrop = 2
+            self.golddrop = 3
+            self.prefix = "Advocate "
+            self.name = self.prefix + self.name
+        if self.level == 3 and self.name == "Blood Wizard":
+            self.wdropconfig = ["Iron Hammer", 3, 3, 3, 30, 5]
+            self.health = 35
+            self.xpdrop = 2
+            self.golddrop = 3
+            self.prefix = "Chief "
+            self.name = self.prefix + self.name
+        ### Necromancer
+        if self.level == 1 and self.name == "Necromancer":
+            self.wdropconfig = ["Iron Hammer", 3, 3, 1, 30, 5]
+            self.health = 5
+            self.xpdrop = 1
+            self.golddrop = 1
+            self.prefix = "Dark "
+            self.name = self.prefix + self.name
+        if self.level == 2 and self.name == "Necromancer":
+            self.wdropconfig = ["Iron Hammer", 3, 3, 2, 30, 5]
+            self.health = 20
+            self.xpdrop = 2
+            self.golddrop = 3
+            self.prefix = "Insidious "
+            self.name = self.prefix + self.name
+        if self.level == 3 and self.name == "Necromancer":
+            self.wdropconfig = ["Iron Hammer", 3, 3, 3, 30, 5]
+            self.health = 35
+            self.xpdrop = 2
+            self.golddrop = 3
+            self.prefix = "Dark-Essence "
+            self.name = self.prefix + self.name
+        ### Blood Wizard
+        if self.level == 1 and self.name == "Void Chancellor":
+            self.wdropconfig = ["Iron Hammer", 3, 3, 1, 30, 5]
+            self.health = 5
+            self.xpdrop = 1
+            self.golddrop = 1
+            self.prefix = "Known "
+            self.name = self.prefix + self.name
+        if self.level == 2 and self.name == "Void Chancellor":
+            self.wdropconfig = ["Iron Hammer", 3, 3, 2, 30, 5]
+            self.health = 20
+            self.xpdrop = 2
+            self.golddrop = 3
+            self.prefix = "Life Drain "
+            self.name = self.prefix + self.name
+        if self.level == 3 and self.name == "Void Chancellor":
+            self.wdropconfig = ["Iron Hammer", 3, 3, 3, 30, 5]
+            self.health = 35
+            self.xpdrop = 2
+            self.golddrop = 3
+            self.prefix = "All-Powerful "
+            self.name = self.prefix + self.name
+
+
             
     def Hit(self, p):
         pickanattack = random.randint(1, 5)
