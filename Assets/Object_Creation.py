@@ -269,11 +269,13 @@ voidchancellor_breed = MonsterBreed("Void Chancellor", demonize, stress_mind, ma
       #######SHOPS#######
 crathershop = Shop("Crather Castle Market", ["Iron Longsword", 3, 3, 1, 30, 5], ["Iron Spear", 3, 3, 1, 30, 5])
 fellrykeshop = Shop("FellRyke Spire Market", ["Iron Spear", 3, 3, 1, 30, 5], ["Iron Hammer", 3, 3, 1, 30, 5])
+darlekshop = Shop("Darlek Black Market", ["Iron Spear", 3, 3, 1, 30, 5], ["Iron Hammer", 3, 3, 1, 30, 5])
 
 
       #######TAVERNS#####
 crathertavern = Tavern("Crather Castle Tavern", None, None)
 fellryketavern = Tavern("FellRyke Spire Tavern", None, None)
+darlektavern = Tavern("Darlek Crowded Tavern", None, None)
 
 
 
@@ -317,11 +319,15 @@ cratherruins = SubLocation("Crather Ruins", None, 5, [cratherruins_skeleton_conf
 fellrykemanor = SubLocation("FellRyke Manor", None, 5, [fellrykemanor_bloodwizard_config])
 fellrykemagetower = SubLocation("FellRyke Mage Tower", None, 5, [fellrykemagetower_voidchancellor_config])
 fellrykegraveyard = SubLocation("FellRyke Grave Yard", None, 5, [fellrykegraveyard_necromancer_config])
+darlekhideout = SubLocation("Darlek Rogue Hideout", None, 5, [fellrykegraveyard_necromancer_config])
+darlekcave = SubLocation("Darlek Cave", None, 5, [fellrykegraveyard_necromancer_config])
+darlekdeepwoods = SubLocation("Darlek Deep Woods", None, 5, [fellrykegraveyard_necromancer_config])
 
 
 #########################----LOCATIONS----##############################
 crathercastle = Location("Crather Castle", crathertavern, crathershop, cratherdungeon, cratherplains, cratherruins)
 fellrykespire = Location("FellRyke Spire", fellryketavern, fellrykeshop, fellrykemanor, fellrykemagetower, fellrykegraveyard)
+darlekwoodlands = Location("Darlek Woodlands", darlektavern, darlekshop, darlekhideout, darlekcave, darlekdeepwoods)
 
 
 

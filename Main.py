@@ -69,15 +69,17 @@ def mainEngine():
         if mainmenu == "Shop":
             Assets.Object_Creation.Start_Shop()
         if mainmenu == "Tavern":
-            easygui.msgbox("You walk into the tavern to see the hustle of many townfolk")
+            easygui.msgbox("You walk into the tavern to see the hustle of many townsfolk")
         if mainmenu == "Travel":
             travelchoice = easygui.choicebox("Where would you like to travel?", "TUDC",
-                              ["Crather Castle", "FellRyke Spire"])
+                              ["Crather Castle", "FellRyke Spire", "Darlek Woodlands"])
             if travelchoice == "Crather Castle":
                 Assets.Object_Creation.player.mainlocation = Assets.Object_Creation.crathercastle
-                easygui.msgbox("You have arrived at Crather Castle!")
             if travelchoice == "FellRyke Spire":
                 Assets.Object_Creation.player.mainlocation = Assets.Object_Creation.fellrykespire
+            if travelchoice == "Darlek Woodlands":
+                Assets.Object_Creation.player.mainlocation = Assets.Object_Creation.darlekwoodlands
+            easygui.msgbox("You have arrived at " + Assets.Object_Creation.player.mainlocation.name + " !")
         if mainmenu == "Save":
             easygui.msgbox("You just saved your game!")
         if mainmenu == "Quit To Menu":
