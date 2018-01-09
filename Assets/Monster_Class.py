@@ -152,7 +152,7 @@ class Monster:
             self.wdropconfig = ["Void Spear", 8, 8, 1, 100, 5000]
             self.adropconfig = ["Plate Armor from the Void", 65, 5000, None] #name, hpbonus, cost, enhancement
             self.health = 5
-            self.xp = 15
+            self.xpdrop = 15
             self.golddrop = 500
 
 

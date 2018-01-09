@@ -79,7 +79,7 @@ def View_Character(p):
             while x != "Quit":
                 if p.statpoints != 0:
                     x = easygui.buttonbox("You have " + str(p.statpoints) + " Stat point(s) to spend!" +
-                                          "Strength: " + str(p.strength) + ". Dexterity: " + str(p.dexterity) + ". Constitution: " + str(p.constitution) +
+                                          " -- Strength: " + str(p.strength) + ". Dexterity: " + str(p.dexterity) + ". Constitution: " + str(p.constitution) +
                                           ". Charisma: " + str(p.charisma) + ". Wisdom: " + str(p.wisdom), "TUDC",
                                           ["Strength", "Dexterity", "Constitution", "Charisma", "Wisdom"])
                     if x == "Strength":
@@ -139,6 +139,11 @@ def Roll_Initial_Stats(p):
                 rolls), "Roll Stats",
             ["Roll", "Accept"])
     easygui.msgbox("Your final stats are- Strength: " + str(stren) + ". Dexterity: " +str(dex) + ". Wisdom: " + str(wis) + ". Constitution: " + str(con) + ". Charisma: " + str(char) + ".")
+    p.strength = stren
+    p.dexterity = dex
+    p.wisdom = wis
+    p.constitution = con
+    p.charisma = char
 
 
 def Give_Weapon(cnfg):
@@ -295,11 +300,14 @@ class Humanoid:
         self.armor = armor
 
     def checkStats(self):
-        if self.xp == self.max_xp:
+        if self.xp >= self.max_xp:
             self.level += 1
             self.max_xp = self.max_xp*1.5
             self.statpoints += 1
+            self.xp = 0
+            self.max_xp = int(self.max_xp)
             easygui.msgbox("You have leveled up! You are now level " + str(self.level) +", and have also gained a stat point to spend!")
+            easygui.msgbox("You only have " + str((self.max_xp - self.xp)) + " Experience points to go before you level up!")
         else:
             easygui.msgbox("You only have " + str((self.max_xp-self.xp)) + " Experience points to go before you level up!")
         self.maxhealth = self.race.hpbonus + (self.constitution*10)
