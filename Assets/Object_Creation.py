@@ -54,7 +54,56 @@ class Game_Time:
 				#Significant world changes
                 
 game_clock = Game_Time(1, 350)
-####
+#### Strength, Dexterity, Wisdom, Charisma, Constitution
+
+
+def Give_Weapon(cnfg):
+    w1 = Weapon(cnfg[0], cnfg[1], cnfg[2], cnfg[3], cnfg[4], cnfg[5])
+    easygui.msgbox("You've been given a " + w1.name + "! It does " + str(w1.damage) + " damage!")
+    return w1
+
+
+def Create_Character(p, c):
+    p.mainlocation = crathercastle
+    p.location = crathercastle
+    easygui.msgbox("You have chosen to create a new character!")
+    p.name = easygui.enterbox("Say, What is your name adventurer?")
+    p.age = easygui.integerbox("Ahh, " + p.name + "... I'm sorry friend, my eyesight is very poor, what is your age?")
+    if p.age >= 35:
+        easygui.msgbox("Ah, the pains of age begin to grow on you, but the peace of wisdom is growing...")
+    else:
+        easygui.msgbox("A young lad we have here! Off for some excitement I presume?")
+    racechoice = easygui.buttonbox("Well " + p.name + ", Of what birth do you originate? Your life presence seems too complex to guess...", "TUDC",
+                      ["Human", "Elf", "Dwarf", "Lyzard"])
+    if racechoice == "Human":
+        p.race = human
+    if racechoice == "Elf":
+        p.race = elf
+    if racechoice == "Dwarf":
+        p.race = dwarf
+    if racechoice == "Lyzard":
+        p.race = lyzard
+    easygui.msgbox("Oh is that so? " + p.name + " The " + p.race.name + ", you are known as?")
+    lifechoice = easygui.buttonbox("What do you seek to accomplish here in the land of Ramera?", "TUDC",
+                      ["Adventure", "Conquer", "Merchant"])
+    if lifechoice == "Adventure":
+        easygui.msgbox("A very stable fellow you seem to be, " + p.name + "...")
+        easygui.msgbox("You've gained +1 to every life stature!")
+    if lifechoice == "Conquer":
+        easygui.msgbox("A passion for power brings fame and many riches, be careful, as many will test your worth!")
+        easygui.msgbox("You've gained +2 to Strength and Consitution, and +1 to Dexterity")
+    if lifechoice == "Merchant":
+        easygui.msgbox("A simple life's satisfaction and glory is often one overlooked...")
+        easygui.msgbox("You've gained +3 to Charisma, and +2 to Wisdom!")
+    easygui.msgbox("Well friend, you've awoken with a minor wound to the head, give yourself some time. You reside in " + p.mainlocation.tavern.name + ". Here take this for safe journey...")
+    p.mainweapon = Give_Weapon(c)
+    player.checkStats()
+
+
+
+
+
+
 def Generate_Monster(cnfg):
     monster1 = Monster(cnfg[0], cnfg[1], cnfg[2], cnfg[3], cnfg[4], cnfg[5], cnfg[6], cnfg[7], cnfg[8], cnfg[9], cnfg[10]) #Monster is created based on location configs // in our real game it would be like player.location.sublocation.monsterconfig or something
     monster1.getConfigs() #We load the monster drop configurations
@@ -80,7 +129,6 @@ def Generate_Armor(m):
     return armor1
 ####
 def Start_Fight():
-    player.checkLevel()
     myMonster = Generate_Monster(player.location.monster[0])
     easygui.msgbox("You have encountered a level " + str(myMonster.level) + " " + myMonster.name + "!")
     while myMonster.health != "Dead":
@@ -89,6 +137,8 @@ def Start_Fight():
         if myMonster.health <= 0:
             easygui.msgbox("You have killed the " + myMonster.name)
             player.mainweapon = Generate_Weapon(myMonster)
+            player.xp += myMonster.xpdrop
+            player.checkStats()
             break
         myMonster.Hit(player)
         if player.health <= 0:
@@ -106,7 +156,7 @@ def Start_Shop():
 
 
 class Humanoid:
-    def __init__(self, name, race, profession, level, gold, health, maxhealth, inventory, mainweapon, mainlocation):
+    def __init__(self, name, race, profession, level, gold, health, maxhealth, inventory, mainweapon, mainlocation, location, age, strength, dexterity, wisdom, constituion, charisma, xp, max_xp, statpoints):
         self.name = name
         self.race = race
         self.profession = profession
@@ -117,19 +167,26 @@ class Humanoid:
         self.inventory = inventory
         self.mainweapon = mainweapon
         self.mainlocation = mainlocation
+        self.location = location
+        self.age = age
+        self.strength = strength
+        self.dexterity = dexterity
+        self. wisdom = wisdom
+        self. constitution = constituion
+        self.charisma = charisma
+        self.xp = xp
+        self.max_xp = max_xp
+        self.statpoints = statpoints
 
-    def checkLevel(self):
-        if self.level == 1:
-            self.maxhealth = 100
-        if self.level == 2:
-            self.maxhealth = 120
-        if self.level == 3:
-            self.maxhealth = 144
-        if self.level == 4:
-            self.maxhealth = 172
-        if self.level == 5:
-            self.maxhealth = 206
-
+    def checkStats(self):
+        if self.xp == self.max_xp:
+            self.level += 1
+            self.max_xp = self.max_xp*1.5
+            self.statpoints += 1
+            easygui.msgbox("You have leveled up! You are now level " + str(self.level) +", and have also gained a stat point to spend!")
+        else:
+            easygui.msgbox("You only have " + str((self.max_xp-self.xp)) + " Experience points to go before you level up!")
+        self.maxhealth = self.race.hpbonus + (self.constitution*10)
         self.health = self.maxhealth
 
     def Hit(self, m):
@@ -144,7 +201,7 @@ class Humanoid:
       if encounterChance <= player.location.monster_rating:
         Start_Fight()
         
-player = Humanoid(None, None, None, 1, 0, 0, 0, [], None, None)
+player = Humanoid(None, None, None, 1, 0, 0, 0, [], None, None, None, None, 1, 1, 1, 1, 1, 1, 10, 5)
 
 
 #######Creation of Objects#######
@@ -165,12 +222,16 @@ Brightness_element = Elemental_Type("Brightness", 1)
 flesh = Monster_Enhancement("Flesh", 0, water_element, fire_element )
 
 
+##############---PROFESSIONS---######################
+
+
+
 ##########################----WEAPONS----###############################
 
 ##Object rules ----
 
 
-##########################---ATTACK TYPES---########################### (Name, desc1, desc2, desc3, dmg, maxdmg)
+##########################---ATTACK TYPES---########################### (Name, desc1, desc2, desc3, dmg, dmgbuffer)
 #####WOLF-LIKE MONSTER ATTACK TYPES #############
 claw = AttackType("Claw", "lunges at you and swipes his claws against your body!",
                   "dashes at your legs while viciously penetrating its claws into your lower extremeties",
@@ -329,15 +390,11 @@ crathercastle = Location("Crather Castle", crathertavern, crathershop, cratherdu
 fellrykespire = Location("FellRyke Spire", fellryketavern, fellrykeshop, fellrykemanor, fellrykemagetower, fellrykegraveyard)
 darlekwoodlands = Location("Darlek Woodlands", darlektavern, darlekshop, darlekhideout, darlekcave, darlekdeepwoods)
 
-
+Sw_Weapon = ["Rusty Dagger", 1, 1, 1, 100, 1]
 
 
 ###For testing purposes these initial stats will be hardcoded // This is just to give our player a weapon to test combat with 
-myMonster = None
-player.mainlocation = crathercastle
-player.location = crathercastle
-myMonster = Generate_Monster(player.location.sub1.monster[0])
-player.mainweapon = Generate_Weapon(myMonster)
+
 
 
 

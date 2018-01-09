@@ -12,7 +12,7 @@ def mainEngine():
         mainmenu = easygui.buttonbox(
             "Location: " + Assets.Object_Creation.player.location.name + ". What would you like to do?",
             "The Ultimate Dungeon Crawler",
-            ["Explore", "Shop", "Tavern", "Travel", "Save", "Quit To Menu"])
+            ["Explore", "Shop", "Tavern", "Travel", "Save", "View Character", "Quit To Menu"])
         if mainmenu == "Explore":
             explorechoice = easygui.buttonbox("Where would you like to explore?", "The Ultimate Dungeon Crawler",
                               [Assets.Object_Creation.player.mainlocation.sub1.name, Assets.Object_Creation.player.mainlocation.sub2.name, Assets.Object_Creation.player.mainlocation.sub3.name])
@@ -64,10 +64,13 @@ def mainEngine():
                         easygui.msgbox("You make it through the night alive")
                     if campchoice == "Return to Town":
                         easygui.msgbox("You pack your things and set out to Town")
-            Assets.Object_Creation.player.explore()
+
+
 
         if mainmenu == "Shop":
             Assets.Object_Creation.Start_Shop()
+        if mainmenu == "View Character":
+            easygui.msgbox("You will be able to spend your stat points here and upgrade your equipment...")
         if mainmenu == "Tavern":
             easygui.msgbox("You walk into the tavern to see the hustle of many townsfolk")
         if mainmenu == "Travel":
@@ -103,19 +106,16 @@ def viewCharacter():
 
 
 def newCharacter():
-    easygui.msgbox("Here you will be able to create a new character!")
+    Assets.Object_Creation.Create_Character(Assets.Object_Creation.player, Assets.Object_Creation.Sw_Weapon)
+    mainEngine()
 
 
 while enginecheck != "Quit":
     choice = buttonbox("Welcome to TUDC!", "v0.01",
-                       ["Play Game", "Load Game", "View Character", "New Character", "Quit"])
+                       ["New Character", "Load Game", "Quit"])
     if choice == "Quit":
         break
-    if choice == "Play Game":
-        mainEngine()
     if choice == "Load Game":
         loadGame()
-    if choice == "View Character":
-        viewCharacter()
     if choice == "New Character":
         newCharacter()

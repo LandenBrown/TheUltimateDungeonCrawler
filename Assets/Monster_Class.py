@@ -18,21 +18,21 @@ class Monster:
         ### Wolf
         if self.level == 1 and self.name == "Wolf":
             self.wdropconfig = ["Iron Longsword", 3, 3, 1, 30, 5]
-            self.health = 10
-            self.xpdrop = 1
+            self.health = 3
+            self.xpdrop = 9
             self.golddrop = 1
             self.prefix = "Mangy " # Has to have a space after the last string character before the quote!!!!!!!!!!!!!!!!!!!!!!!
             self.name = self.prefix + self.name
         if self.level == 2 and self.name == "Wolf":
             self.wdropconfig = ["Iron Longsword", 3, 3, 2, 30, 5]
-            self.health = 25
+            self.health = 7
             self.xpdrop = 2
             self.golddrop = 4
             self.prefix = "Vicious "
             self.name = self.prefix + self.name
         if self.level == 3 and self.name == "Wolf":
             self.wdropconfig = ["Iron Longsword", 3, 3, 3, 30, 5]
-            self.health = 35
+            self.health = 15
             self.xpdrop = 7
             self.golddrop = 9
             self.prefix = "Alpha"
@@ -65,6 +65,7 @@ class Monster:
             self.health = 5
             self.xpdrop = 1
             self.golddrop = 1
+
             self.prefix = "Creeking "
             self.name = self.prefix + self.name
         if self.level == 2 and self.name == "Skeleton":
