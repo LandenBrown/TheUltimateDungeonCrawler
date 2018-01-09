@@ -113,7 +113,7 @@ def viewCharacter():
 
 def newCharacter():
     Assets.Object_Creation.Roll_Initial_Stats(Assets.Object_Creation.player)
-    Assets.Object_Creation.Create_Character(Assets.Object_Creation.player, Assets.Object_Creation.Sw_Weapon)
+    Assets.Object_Creation.Create_Character(Assets.Object_Creation.player, Assets.Object_Creation.Sw_Weapon, Assets.Object_Creation.Sa_Armor)
     mainEngine()
 
 

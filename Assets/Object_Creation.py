@@ -111,9 +111,9 @@ def View_Character(p):
                 b = easygui.buttonbox("What equipment would you like to examine?", "TUDC",
                                       ["Armor", "Weapon", "Inventory", "Back"])
                 if b == "Armor":
-                    easygui.msgbox("You are not wearing armor yet.")
+                    easygui.msgbox("You are currently wearing " + p.armor.name + ", which gives you an HP Bonus of: " + str(p.armor.hpbonus) + "!")
                 if b == "Weapon":
-                    easygui.msgbox("You are currnetly wielding a level " + str(p.mainweapon.level) + " " + p.mainweapon.name + ". It does " + str(p.mainweapon.damage) + " damage on its own, and can sell for " + str(p.mainweapon.cost))
+                    easygui.msgbox("You are currently wielding a level " + str(p.mainweapon.level) + " " + p.mainweapon.name + ". It does " + str(p.mainweapon.damage) + " damage on its own, and can sell for " + str(p.mainweapon.cost))
                 else:
                     break
 def Roll_Initial_Stats(p):
@@ -146,9 +146,13 @@ def Give_Weapon(cnfg):
     w1.getConfigs()
     easygui.msgbox("You've been given a " + w1.name + "! It does " + str(w1.damage) + " damage!")
     return w1
+def Give_Armor(cnfg):
+    a1 = Armor(cnfg[0], cnfg[1], cnfg[2], cnfg[3])
+    easygui.msgbox("You've been given " + a1.name + "! It gives " + str(a1.hpbonus) + " bonus HP!")
+    return a1
 
 
-def Create_Character(p, c):
+def Create_Character(p, c, cc):
     p.mainlocation = crathercastle
     p.location = crathercastle
     easygui.msgbox("You wake up slowly to the smell of a lemprus weed pipe being gently blown in your face... The sweet aftertaste in the back of your throat sooths the pain that is " +
@@ -198,6 +202,7 @@ def Create_Character(p, c):
         p.wisdom += 2
     easygui.msgbox("Well friend, I found you washed ashore the crather castle beach with a minor wound to the head, give yourself some time. You reside in " + p.mainlocation.tavern.name + ". Here take this for safe journey...")
     p.mainweapon = Give_Weapon(c)
+    p.armor = Give_Armor(cc)
     player.checkStats()
 
 
@@ -226,8 +231,9 @@ def Buy_Weapon(s):
     if buy == "Yes":
         return shopweapon
 def Generate_Armor(m):
-    armor1 = Armor(m.adropconfig)
+    armor1 = Armor(m.adropconfig[0], m.adropconfig[1], m.adropconfig[2], m.adropconfig[3])
     return armor1
+    easygui.msgbox("You have equipped new armor!")
 ####
 def Start_Fight():
     myMonster = Generate_Monster(player.location.monster[0])
@@ -238,6 +244,14 @@ def Start_Fight():
         if myMonster.health <= 0:
             easygui.msgbox("You have killed the " + myMonster.name)
             player.mainweapon = Generate_Weapon(myMonster)
+            if myMonster.name == "Void Lord":
+                achoice = easygui.buttonbox("The " + myMonster.name + " dropped legendary armor: " + myMonster.adropconfig[0] + ". Would you like to equip it now?", "Rare Loot",
+                                            ["Yes", "No"])
+                if achoice == "Yes":
+                    player.armor = Generate_Armor(myMonster)
+                else:
+                    easygui.msgbox("You have chosen to give up the legendary item!")
+
             player.xp += myMonster.xpdrop
             player.checkStats()
             break
@@ -257,7 +271,7 @@ def Start_Shop():
 
 
 class Humanoid:
-    def __init__(self, name, race, profession, level, gold, health, maxhealth, inventory, mainweapon, mainlocation, location, age, strength, dexterity, wisdom, constituion, charisma, xp, max_xp, statpoints):
+    def __init__(self, name, race, profession, level, gold, health, maxhealth, inventory, mainweapon, mainlocation, location, age, strength, dexterity, wisdom, constituion, charisma, xp, max_xp, statpoints, armor):
         self.name = name
         self.race = race
         self.profession = profession
@@ -278,6 +292,7 @@ class Humanoid:
         self.xp = xp
         self.max_xp = max_xp
         self.statpoints = statpoints
+        self.armor = armor
 
     def checkStats(self):
         if self.xp == self.max_xp:
@@ -302,7 +317,7 @@ class Humanoid:
       if encounterChance <= player.location.monster_rating:
         Start_Fight()
         
-player = Humanoid(None, None, None, 1, 0, 0, 0, [], None, None, None, None, 1, 1, 1, 1, 1, 1, 10, 5)
+player = Humanoid(None, None, None, 1, 0, 0, 0, [], None, None, None, None, 1, 1, 1, 1, 1, 1, 10, 5, None)
 
 
 #######Creation of Objects#######
@@ -423,6 +438,7 @@ skeleton_breed = MonsterBreed("Skeleton", sword_swing, shield_bash, sword_slap, 
 bloodwizard_breed = MonsterBreed("Blood Wizard", demonize, stress_mind, manipulate, void_ball, blood_curdle, darkness_element)
 necromancer_breed = MonsterBreed("Necromancer", demonize, stress_mind, manipulate, void_ball, blood_curdle, darkness_element)
 voidchancellor_breed = MonsterBreed("Void Chancellor", demonize, stress_mind, manipulate, void_ball, blood_curdle, darkness_element)
+voidlord_breed = MonsterBreed("Void Lord", demonize, stress_mind, manipulate, void_ball, blood_curdle, darkness_element)
 
 
 
@@ -470,12 +486,13 @@ cratherruins_skeleton_config = ["Skeleton", 1, 1, 1, 1, 1, skeleton_breed, 1, No
 fellrykemanor_bloodwizard_config = ["Blood Wizard", 1, 1, 1, 1, 1, bloodwizard_breed, 1, None, None, None]
 fellrykemagetower_voidchancellor_config = ["Void Chancellor", 1, 1, 1, 1, 1, voidchancellor_breed, 1, None, None, None]
 fellrykegraveyard_necromancer_config = ["Necromancer", 1, 1, 1, 1, 1, necromancer_breed, 1, None, None, None]
+voidlord_conifg = ["Void Lord", 1, 1, 1, 1, 1, voidlord_breed, 1, None, None, None]
 
 
 ###CRATHER CASTLE
 
 #########################----SUB LOCATIONS----##########################
-cratherdungeon = SubLocation("Crather Castle Dungeon", None, 3, [cratherdungeon_wolf_config])
+cratherdungeon = SubLocation("Crather Castle Dungeon", None, 3, [voidlord_conifg])
 cratherplains = SubLocation("Crather Plains", None, 3, [cratherplains_goblin_config])
 cratherruins = SubLocation("Crather Ruins", None, 5, [cratherruins_skeleton_config])
 fellrykemanor = SubLocation("FellRyke Manor", None, 5, [fellrykemanor_bloodwizard_config])
@@ -492,6 +509,7 @@ fellrykespire = Location("FellRyke Spire", fellryketavern, fellrykeshop, fellryk
 darlekwoodlands = Location("Darlek Woodlands", darlektavern, darlekshop, darlekhideout, darlekcave, darlekdeepwoods)
 
 Sw_Weapon = ["Rusty Dagger", 1, 1, 1, 100, 1]
+Sa_Armor = ["Torn Leather Armor", 10, 1, flesh]
 
 
 ###For testing purposes these initial stats will be hardcoded // This is just to give our player a weapon to test combat with 
