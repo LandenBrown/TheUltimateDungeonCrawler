@@ -55,10 +55,34 @@ class Game_Time:
                 
 game_clock = Game_Time(1, 350)
 #### Strength, Dexterity, Wisdom, Charisma, Constitution
+def Roll_Initial_Stats(p):
+    easygui.msgbox("You are going to roll your stats!")
+    rolls = 5
+    yesno = 0
+    while rolls > 0 or yesno != "Accept":
+        if yesno == "Accept":
+            easygui.msgbox("You have accepted the stats!")
+            break
+        rolls -= 1
+        stren = random.randint(1, 20)
+        dex = random.randint(1, 20)
+        wis = random.randint(1, 20)
+        con = random.randint(1, 20)
+        char = random.randint(1, 20)
+        easygui.msgbox("Strength: " + str(stren) + ". Dexterity: " +str(dex) + ". Wisdom: " + str(wis) + ". Constitution: " + str(con) + ". Charisma: " + str(char) + ".")
+        if rolls <= 0:
+            easygui.msgbox("You ran out of rolls! Click OK to see your final stats!")
+            break
+        yesno = easygui.buttonbox(
+            "Click Roll to attempt to roll your stats! Click Accept when you are satisfied with your randomized stats! Rolls Left: " + str(
+                rolls), "Roll Stats",
+            ["Roll", "Accept"])
+    easygui.msgbox("Your final stats are- Strength: " + str(stren) + ". Dexterity: " +str(dex) + ". Wisdom: " + str(wis) + ". Constitution: " + str(con) + ". Charisma: " + str(char) + ".")
 
 
 def Give_Weapon(cnfg):
     w1 = Weapon(cnfg[0], cnfg[1], cnfg[2], cnfg[3], cnfg[4], cnfg[5])
+    w1.getConfigs()
     easygui.msgbox("You've been given a " + w1.name + "! It does " + str(w1.damage) + " damage!")
     return w1
 
@@ -66,36 +90,52 @@ def Give_Weapon(cnfg):
 def Create_Character(p, c):
     p.mainlocation = crathercastle
     p.location = crathercastle
-    easygui.msgbox("You have chosen to create a new character!")
-    p.name = easygui.enterbox("Say, What is your name adventurer?")
-    p.age = easygui.integerbox("Ahh, " + p.name + "... I'm sorry friend, my eyesight is very poor, what is your age?")
+    easygui.msgbox("You wake up slowly to the smell of a lemprus weed pipe being gently blown in your face... The sweet aftertaste in the back of your throat sooths the pain that is " +
+                   "becoming more and more prevalent as you become more concious.. You open your eyes wearily and turn to see an old man sitting over you..." +
+                   "He is clearly not here to hurt you, as the small medical supplies around him suggest he may have been helping you... 'But where am i... WHO am i?' You think to yourself.")
+    p.name = easygui.enterbox("'Say, What is your name adventurer?' The old man says. You don't remember your name at all... or anything of who you previously were, but you refuse to keep him waiting...")
+    p.age = easygui.integerbox("'Ahh, " + p.name + "... I'm sorry friend, my eyesight is very poor, what is your age?' The old man utters as he squints fervently trying to make a personal account himself.")
     if p.age >= 35:
-        easygui.msgbox("Ah, the pains of age begin to grow on you, but the peace of wisdom is growing...")
+        easygui.msgbox("'Ah, the pains of age begin to grow on you...' He chuckled. '...but the peace of wisdom is growing...")
     else:
-        easygui.msgbox("A young lad we have here! Off for some excitement I presume?")
-    racechoice = easygui.buttonbox("Well " + p.name + ", Of what birth do you originate? Your life presence seems too complex to guess...", "TUDC",
+        easygui.msgbox("'A young lad we have here! Off for some excitement I presume?' The old man says as he laughs, pointing to his own head, clearly mocking your injury.")
+    racechoice = easygui.buttonbox("'Well " + p.name + ", Of what birth do you originate? Your life presence seems too complex to guess...' He says. Is he some kind of wizard? Life sense? How can he feel my life sense?", "TUDC",
                       ["Human", "Elf", "Dwarf", "Lyzard"])
     if racechoice == "Human":
         p.race = human
+        easygui.msgbox("You get a health bonus of " + str(human.hpbonus))
     if racechoice == "Elf":
         p.race = elf
+        easygui.msgbox("You get a health bonus of " + str(elf.hpbonus))
     if racechoice == "Dwarf":
         p.race = dwarf
+        easygui.msgbox("You get a health bonus of " + str(dwarf.hpbonus))
     if racechoice == "Lyzard":
         p.race = lyzard
-    easygui.msgbox("Oh is that so? " + p.name + " The " + p.race.name + ", you are known as?")
-    lifechoice = easygui.buttonbox("What do you seek to accomplish here in the land of Ramera?", "TUDC",
+        easygui.msgbox("You get a health bonus of " + str(lyzard.hpbonus))
+    easygui.msgbox("'Oh is that so? " + p.name + " The " + p.race.name + ", you are known as?' The man chuckled. 'Well, That sounds like a name to be remembered...'")
+    lifechoice = easygui.buttonbox("The man softly draws back, and gently asks me, 'What do you seek to accomplish here in the land of Ramera?'. I had no idea, about anything. I better decide fast. 'I'll trust my gut' you think to yourself.", "TUDC",
                       ["Adventure", "Conquer", "Merchant"])
     if lifechoice == "Adventure":
         easygui.msgbox("A very stable fellow you seem to be, " + p.name + "...")
         easygui.msgbox("You've gained +1 to every life stature!")
+        p.strength += 1
+        p.dexterity += 1
+        p.constitution += 1
+        p.charisma += 1
+        p.wisdom += 1
     if lifechoice == "Conquer":
         easygui.msgbox("A passion for power brings fame and many riches, be careful, as many will test your worth!")
         easygui.msgbox("You've gained +2 to Strength and Consitution, and +1 to Dexterity")
+        p.strength += 2
+        p.constitution += 2
+        p.dexterity += 1
     if lifechoice == "Merchant":
         easygui.msgbox("A simple life's satisfaction and glory is often one overlooked...")
         easygui.msgbox("You've gained +3 to Charisma, and +2 to Wisdom!")
-    easygui.msgbox("Well friend, you've awoken with a minor wound to the head, give yourself some time. You reside in " + p.mainlocation.tavern.name + ". Here take this for safe journey...")
+        p.charisma += 3
+        p.wisdom += 2
+    easygui.msgbox("Well friend, I found you washed ashore the crather castle beach with a minor wound to the head, give yourself some time. You reside in " + p.mainlocation.tavern.name + ". Here take this for safe journey...")
     p.mainweapon = Give_Weapon(c)
     player.checkStats()
 
@@ -191,8 +231,8 @@ class Humanoid:
 
     def Hit(self, m):
         #here we are going to make the function to hit the monster, so we can call it during game
-        m.health = m.health - self.mainweapon.damage
-        easygui.msgbox("You swing at the monster and deal " + str(self.mainweapon.damage) + " damage!")
+        m.health = m.health - (self.mainweapon.damage+self.strength)
+        easygui.msgbox("You swing at the monster and deal " + str(self.mainweapon.damage+self.strength) + " damage!")
         ##if player.damagedealt < 0: #making sure that we never do negative damage    ############## I COMMENTED THIS OUT BECAUSE NOW DAMAGE SHOULD NEVER BE NEGATIVE DUE TO THE NEW DAMAGE_BUFFER CALCULATIONS - SCORE!                                                                     
         ##  damagedealt = 0                                                                                                                             
     
