@@ -19,42 +19,103 @@ from easygui import *
 
 
 class Game_Time:
-        def __init__(self, day, year):
-                self.day = day
-                self.year = year
+        def __init__(self, day, year, time, turn):
+            self.day = day
+            self.year = year
+            self.time = time
+            self.turn = turn
         def checkDate(self):
-                if self.day >= 60:
-                        self.year = self.year + 1
-                        self.day = 1
-                        if self.year == 351:
-                                print "Welcome to the year of the Scorpion."
+            self.turn += 1
+            if self.turn >= 6:
+                self.day += 1
+                self.turn = 0
+                print "You have advanced a day!"
+            if self.turn <= 2:
+                self.time = "Morning"
+            if self.turn == 3:
+                self.time = "Afternoon"
+            if self.turn > 3:
+                self.time = "Evening"
+            if self.day >= 60:
+                    self.year = self.year + 1
+                    self.day = 1
+                    if self.year == 351:
+                        print "Welcome to the year of the Scorpion."
 				                #A significant "Attention Grabber" designed to interest the player
 				                #Will bring new merchants to the world, earthquakes will open new dungeons
 				                #A new element will envelope the world, causing imbalance in combat until contained (new quests)
 				                #A Seeker will enter the world, often entering towns and offering legendary spells for high gold prices
-                        if self.year == 352:
-                                print "Welcome to the year of the Centaur"
+                    if self.year == 352:
+                        print "Welcome to the year of the Centaur"
 				                #A great centuar will visit the town, look beautiful, but bring curses
 				                #Must investigate and determine what is causing the dark magic (new quests)
-                        if self.year == 353:
-                                print "Welcome to the year of the Void Kraken"
+                    if self.year == 353:
+                            print "Welcome to the year of the Void Kraken"
 				                #The Void Kraken will consume the FellRyke Spire, Must Climb the spire and kill each stage of him
 				                #Defeat it to visit this town again and help rebuild (New quests)
-                        if self.year == 354:
-                                print "Welcome to the year of the Ghoul"
+                    if self.year == 354:
+                            print "Welcome to the year of the Ghoul"
 				                #Ghouls will be twice as powerful this year
 				                #An Army of Ghouls (level 3) will invade Crather Castle. You can run/fight
 				                #Ghouls will grow in numbers if not dealt with, could potentially take over the world and all zones
 				                #Ghouls will disapear upon the new year when the Searing Cornerstone turns them to ash
 				                #Will force you to camp in the wilderness and not visit towns.
-                        if self.year == 355:
-                                print "Welcome to the decade of the Searing CornerStone"
+                    if self.year == 355:
+                            print "Welcome to the decade of the Searing CornerStone"
 				#Sears all Ghouls from the year of the ghoul to ash
 				#Special event happens on day 25 
 				#Significant world changes
                 
-game_clock = Game_Time(1, 350)
+game_clock = Game_Time(1, 350, "Morning", 0)
 #### Strength, Dexterity, Wisdom, Charisma, Constitution
+
+def View_Character(p):
+    y = 0
+    while y != "Quit":
+        y = easygui.buttonbox("Here you can view your equipment and spend skill points. What would you like to do?", "TUDC",
+                          ["Spend Skill Points", "View Equipment", "Quit"])
+        if y == "Spend Skill Points":
+            x = 0
+            while x != "Quit":
+                if p.statpoints != 0:
+                    x = easygui.buttonbox("You have " + str(p.statpoints) + " Stat point(s) to spend!" +
+                                          "Strength: " + str(p.strength) + ". Dexterity: " + str(p.dexterity) + ". Constitution: " + str(p.constitution) +
+                                          ". Charisma: " + str(p.charisma) + ". Wisdom: " + str(p.wisdom), "TUDC",
+                                          ["Strength", "Dexterity", "Constitution", "Charisma", "Wisdom"])
+                    if x == "Strength":
+                        p.strength += 1
+                        p.statpoints -= 1
+                        easygui.msgbox("You have increased your Strength to: " +str(p.strength))
+                    if x == "Dexterity":
+                        p.dexterity += 1
+                        p.statpoints -= 1
+                        easygui.msgbox("You have increased your Dexterity to: " +str(p.dexterity))
+                    if x == "Constitution":
+                        p.constitution += 1
+                        p.statpoints -= 1
+                        easygui.msgbox("You have increased your Constitution to: " +str(p.constitution))
+                    if x == "Charisma":
+                        p.charisma += 1
+                        p.statpoints -= 1
+                        easygui.msgbox("You have increased your Charisma to: " +str(p.charisma))
+                    if x == "Wisdom":
+                        p.wisdom += 1
+                        p.statpoints -= 1
+                        easygui.msgbox("You have increased your Wisdom to: " +str(p.wisdom))
+                else:
+                    easygui.msgbox("You are out of skill points!")
+                    break
+        if y == "View Equipment":
+            b = 0
+            while b != "Back":
+                b = easygui.buttonbox("What equipment would you like to examine?", "TUDC",
+                                      ["Armor", "Weapon", "Inventory", "Back"])
+                if b == "Armor":
+                    easygui.msgbox("You are not wearing armor yet.")
+                if b == "Weapon":
+                    easygui.msgbox("You are currnetly wielding a level " + str(p.mainweapon.level) + " " + p.mainweapon.name + ". It does " + str(p.mainweapon.damage) + " damage on its own, and can sell for " + str(p.mainweapon.cost))
+                else:
+                    break
 def Roll_Initial_Stats(p):
     easygui.msgbox("You are going to roll your stats!")
     rolls = 5
