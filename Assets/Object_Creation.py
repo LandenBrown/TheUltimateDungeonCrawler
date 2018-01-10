@@ -11,6 +11,7 @@ from Armor import *
 from Resource import *
 from Monster_Enhancement import *
 from Elemental_Type import *
+from NPC_Class import *
 import random
 import easygui
 from easygui import *
@@ -53,7 +54,7 @@ class Game_Time:
                             print "Welcome to the year of the Void Kraken"
 				                #The Void Kraken will consume the FellRyke Spire, Must Climb the spire and kill each stage of him
 				                #Defeat it to visit this town again and help rebuild (New quests)
-                    if self.year == 354:
+                    if self.year == 354: 
                             print "Welcome to the year of the Ghoul"
 				                #Ghouls will be twice as powerful this year
 				                #An Army of Ghouls (level 3) will invade Crather Castle. You can run/fight
@@ -68,6 +69,26 @@ class Game_Time:
                 
 game_clock = Game_Time(1, 350, "Morning", 0)
 #### Strength, Dexterity, Wisdom, Charisma, Constitution
+
+
+def Talk_To_NPC(p):
+    #Decide what NPC we are talking to
+    npc = 0
+    while npc != "Leave Tavern":
+        npc = easygui.buttonbox(p.mainlocation.tavern.description+"Who would you like to talk to?", "Tavern",
+                                [p.mainlocation.tavern.owner.name, p.mainlocation.tavern.npc1.name, "Leave Tavern"])
+        if npc == p.mainlocation.tavern.npc1.name:
+            if p.mainlocation.tavern.npc1.quest != None:
+                p.mainlocation.tavern.npc1.Quest_Dialogue()
+            else:
+                easygui.msgbox(p.mainlocation.tavern.npc1.intro)
+        if npc == p.mainlocation.tavern.owner.name:
+            if p.mainlocation.tavern.owner.quest != None:
+                p.mainlocation.tavern.owner.Quest_Dialogue()
+            else:
+                easygui.msgbox(p.mainlocation.tavern.owner.intro)
+
+
 
 def View_Character(p):
     y = 0
@@ -458,10 +479,24 @@ fellrykeshop = Shop("FellRyke Spire Market", ["Iron Spear", 3, 3, 1, 30, 5], ["I
 darlekshop = Shop("Darlek Black Market", ["Iron Spear", 3, 3, 1, 30, 5], ["Iron Hammer", 3, 3, 1, 30, 5])
 
 
+####### NPCs
+
+
+####CRATHER TAVERN
+greji_stormbeard = NPC("Greji Stormbeard", "Greetings Adventurer! You seem new to Remera! Sit down and enjoy a drink!", None)
+reyla_crosser = NPC("Reyla Crosser", "Mmm, Hello there friend... I've had quite a bit to drink, do you mind taking care of something for me?", "Yes")
+####FELLRYKE TAVERN
+mystic_grear = NPC("Mystic Grear", "'Hello...' the mystic says as he stares blankly into your eyes...", None)
+jarvek_hurf = NPC("Jarvek Hurf", "Interesting, my mind affecting magic seems to be warded against you... come hither, breahting life-source...", "Yes")
+####DARLEK TAVERN
+samuel_farwell = NPC("Samuel Farmwell", "Move along... You have no business speaking to me.", None)
+harold_campen = NPC("Harold Campen", "Aha! You look like somebody that could use some work... Come... Sit with me...", "Yes")
+
+
       #######TAVERNS#####
-crathertavern = Tavern("Crather Castle Tavern", None, None)
-fellryketavern = Tavern("FellRyke Spire Tavern", None, None)
-darlektavern = Tavern("Darlek Crowded Tavern", None, None)
+crathertavern = Tavern("Crather Castle Tavern", greji_stormbeard, reyla_crosser, "Towns folk dance and sing, farmers smoke lempus, and guards rejoice in the King's glory. Happiness exudes from the enviroment...")
+fellryketavern = Tavern("FellRyke Spire Tavern", mystic_grear, jarvek_hurf, "A dark, mysterious aura exudes from everyone here... Not many people talking, and there is no bard to make music... The silence is not calming...")
+darlektavern = Tavern("Darlek Crowded Tavern", samuel_farwell, harold_campen, "Theives, murderers, and bandits crowd together in the tavern, many looking your way is if you're prey... Best stick to myself here...")
 
 
 

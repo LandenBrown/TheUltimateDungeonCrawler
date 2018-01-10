@@ -76,7 +76,7 @@ def mainEngine():
         if mainmenu == "View Character":
             Assets.Object_Creation.View_Character(Assets.Object_Creation.player)
         if mainmenu == "Tavern":
-            easygui.msgbox("You walk into the tavern to see the hustle of many townsfolk")
+            Assets.Object_Creation.Talk_To_NPC(Assets.Object_Creation.player)
         if mainmenu == "Travel":
             travelchoice = easygui.choicebox("Where would you like to travel?", "TUDC",
                               ["Crather Castle", "FellRyke Spire", "Darlek Woodlands"])
@@ -97,7 +97,6 @@ def mainEngine():
 
 def loadGame():
     easygui.msgbox("This is where you will select a save!")
-    mainEngine()
 
 
 def viewCharacter():

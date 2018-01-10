@@ -23,10 +23,11 @@ class Shop:
                 self.wconfig = wconifg
                 self.aconfig = aconfig
 class Tavern:
-        def __init__(self, name, owner, npc):
+        def __init__(self, name, owner, npc1, description):
                 self.name = name
                 self.owner = owner
-                self.npc = npc
+                self.npc1 = npc1
+                self.description = description
 
 
 
