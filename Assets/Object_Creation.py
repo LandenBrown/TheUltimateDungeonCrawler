@@ -281,6 +281,7 @@ def Start_Fight():
 
             player.xp += myMonster.xpdrop
             player.checkStats()
+            player.checkQuest(myMonster)
             break
         myMonster.Hit(player)
         if player.health <= 0:
@@ -335,6 +336,15 @@ class Humanoid:
             easygui.msgbox("You only have " + str((self.max_xp-self.xp)) + " Experience points to go before you level up!")
         self.maxhealth = self.race.hpbonus + (self.constitution*10)
         self.health = self.maxhealth
+    def checkQuest(self, m):
+        if self.quest.target_objective == (m.name):
+            self.quest.current += 1
+            print "added to quest obective - TESTING" #Bug testing
+            print self.quest.current
+            print "needed: " + str(self.quest.goal)
+            if self.quest.current >= self.quest.goal:
+                easygui.msgbox("You have completed your quest! You should return and receive your rewards!")
+
 
     def Hit(self, m):
         #here we are going to make the function to hit the monster, so we can call it during game
@@ -373,7 +383,7 @@ flesh = Monster_Enhancement("Flesh", 0, water_element, fire_element )
 
 ##############--- QUESTS ---############################
 quest_kill10skeletons = Quest("Clearing the boneyard", "Well, as you may have heard, skeletons are ammassing in the Crather Dungeon...", "They have been relentlessly slaughtering villagers, or any livestock that dares near the area",
-                              "Unfortunately I do not have the skill or the aptitude to take care of this myself...", None, None, None, None, None, None, None, "Kill 10 Creaking Skeletons", "Creaking Skeleton")
+                              "Unfortunately I do not have the skill or the aptitude to take care of this myself...", None, None, None, None, None, None, None, "Kill 3 Creaking Skeletons", "Creaking Skeleton", 3, 0, False)
 
 ##########################----WEAPONS----###############################
 
@@ -539,7 +549,7 @@ voidlord_conifg = ["Void Lord", 1, 1, 1, 1, 1, voidlord_breed, 1, None, None, No
 ###CRATHER CASTLE
 
 #########################----SUB LOCATIONS----##########################
-cratherdungeon = SubLocation("Crather Castle Dungeon", None, 3, [voidlord_conifg])
+cratherdungeon = SubLocation("Crather Castle Dungeon", None, 3, [cratherruins_skeleton_config])
 cratherplains = SubLocation("Crather Plains", None, 3, [cratherplains_goblin_config])
 cratherruins = SubLocation("Crather Ruins", None, 5, [cratherruins_skeleton_config])
 fellrykemanor = SubLocation("FellRyke Manor", None, 5, [fellrykemanor_bloodwizard_config])

@@ -66,7 +66,7 @@ class Monster:
             self.xpdrop = 1
             self.golddrop = 1
 
-            self.prefix = "Creeking "
+            self.prefix = "Creaking "
             self.name = self.prefix + self.name
         if self.level == 2 and self.name == "Skeleton":
             self.wdropconfig = ["Iron Hammer", 3, 3, 2, 30, 5]

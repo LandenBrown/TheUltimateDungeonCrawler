@@ -4,7 +4,7 @@ from easygui import *
 
 
 class Quest:
-        def __init__(self, name, d1, d2, d3, d4, d5, d6, d7, d8, d9, d10, target, target_objective):
+        def __init__(self, name, d1, d2, d3, d4, d5, d6, d7, d8, d9, d10, target, target_objective, goal, current, complete):
                 self.d1 = d1
                 self.d2 = d2
                 self.d3 = d3
@@ -17,6 +17,9 @@ class Quest:
                 self.d10 = d10
                 self.target = target
                 self.target_objective = target_objective
+                self.goal = goal
+                self.current = current
+                self.complete = complete
 
 
 
