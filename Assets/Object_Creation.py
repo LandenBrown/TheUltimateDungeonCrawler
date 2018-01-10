@@ -12,6 +12,7 @@ from Resource import *
 from Monster_Enhancement import *
 from Elemental_Type import *
 from NPC_Class import *
+from Quest_Class import *
 import random
 import easygui
 from easygui import *
@@ -54,7 +55,7 @@ class Game_Time:
                             print "Welcome to the year of the Void Kraken"
 				                #The Void Kraken will consume the FellRyke Spire, Must Climb the spire and kill each stage of him
 				                #Defeat it to visit this town again and help rebuild (New quests)
-                    if self.year == 354: 
+                    if self.year == 354:
                             print "Welcome to the year of the Ghoul"
 				                #Ghouls will be twice as powerful this year
 				                #An Army of Ghouls (level 3) will invade Crather Castle. You can run/fight
@@ -79,12 +80,12 @@ def Talk_To_NPC(p):
                                 [p.mainlocation.tavern.owner.name, p.mainlocation.tavern.npc1.name, "Leave Tavern"])
         if npc == p.mainlocation.tavern.npc1.name:
             if p.mainlocation.tavern.npc1.quest != None:
-                p.mainlocation.tavern.npc1.Quest_Dialogue()
+                p.mainlocation.tavern.npc1.Quest_Dialogue(player)
             else:
                 easygui.msgbox(p.mainlocation.tavern.npc1.intro)
         if npc == p.mainlocation.tavern.owner.name:
             if p.mainlocation.tavern.owner.quest != None:
-                p.mainlocation.tavern.owner.Quest_Dialogue()
+                p.mainlocation.tavern.owner.Quest_Dialogue(player)
             else:
                 easygui.msgbox(p.mainlocation.tavern.owner.intro)
 
@@ -297,7 +298,7 @@ def Start_Shop():
 
 
 class Humanoid:
-    def __init__(self, name, race, profession, level, gold, health, maxhealth, inventory, mainweapon, mainlocation, location, age, strength, dexterity, wisdom, constituion, charisma, xp, max_xp, statpoints, armor):
+    def __init__(self, name, race, profession, level, gold, health, maxhealth, inventory, mainweapon, mainlocation, location, age, strength, dexterity, wisdom, constituion, charisma, xp, max_xp, statpoints, armor, quest):
         self.name = name
         self.race = race
         self.profession = profession
@@ -319,6 +320,7 @@ class Humanoid:
         self.max_xp = max_xp
         self.statpoints = statpoints
         self.armor = armor
+        self.quest = quest
 
     def checkStats(self):
         if self.xp >= self.max_xp:
@@ -346,7 +348,7 @@ class Humanoid:
       if encounterChance <= player.location.monster_rating:
         Start_Fight()
         
-player = Humanoid(None, None, None, 1, 0, 0, 0, [], None, None, None, None, 1, 1, 1, 1, 1, 1, 10, 5, None)
+player = Humanoid(None, None, None, 1, 0, 0, 0, [], None, None, None, None, 1, 1, 1, 1, 1, 1, 10, 5, None, None)
 
 
 #######Creation of Objects#######
@@ -369,7 +371,9 @@ flesh = Monster_Enhancement("Flesh", 0, water_element, fire_element )
 
 ##############---PROFESSIONS---######################
 
-
+##############--- QUESTS ---############################
+quest_kill10skeletons = Quest("Clearing the boneyard", "Well, as you may have heard, skeletons are ammassing in the Crather Dungeon...", "They have been relentlessly slaughtering villagers, or any livestock that dares near the area",
+                              "Unfortunately I do not have the skill or the aptitude to take care of this myself...", None, None, None, None, None, None, None, "Kill 10 Creaking Skeletons", "Creaking Skeleton")
 
 ##########################----WEAPONS----###############################
 
@@ -484,7 +488,7 @@ darlekshop = Shop("Darlek Black Market", ["Iron Spear", 3, 3, 1, 30, 5], ["Iron 
 
 ####CRATHER TAVERN
 greji_stormbeard = NPC("Greji Stormbeard", "Greetings Adventurer! You seem new to Remera! Sit down and enjoy a drink!", None)
-reyla_crosser = NPC("Reyla Crosser", "Mmm, Hello there friend... I've had quite a bit to drink, do you mind taking care of something for me?", "Yes")
+reyla_crosser = NPC("Reyla Crosser", "Mmm, Hello there friend... I've had quite a bit to drink, do you mind taking care of something for me?", quest_kill10skeletons)
 ####FELLRYKE TAVERN
 mystic_grear = NPC("Mystic Grear", "'Hello...' the mystic says as he stares blankly into your eyes...", None)
 jarvek_hurf = NPC("Jarvek Hurf", "Interesting, my mind affecting magic seems to be warded against you... come hither, breahting life-source...", "Yes")

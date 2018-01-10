@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c03142ed-e5e8-4faf-bfab-9e66629884cb" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/Assets/Location.py" afterPath="$PROJECT_DIR$/Assets/Location.py" />
+      <change beforePath="$PROJECT_DIR$/Assets/NPC_Class.py" afterPath="$PROJECT_DIR$/Assets/NPC_Class.py" />
       <change beforePath="$PROJECT_DIR$/Assets/Object_Creation.py" afterPath="$PROJECT_DIR$/Assets/Object_Creation.py" />
-      <change beforePath="$PROJECT_DIR$/Main.py" afterPath="$PROJECT_DIR$/Main.py" />
+      <change beforePath="$PROJECT_DIR$/Assets/Quest_Class.py" afterPath="$PROJECT_DIR$/Assets/Quest_Class.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -15,11 +15,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Object_Creation.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Object_Creation.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Assets/Object_Creation.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="56" column="41" lean-forward="false" selection-start-line="56" selection-start-column="41" selection-end-line="56" selection-end-column="41" />
+            <state relative-caret-position="158">
+              <caret line="71" column="45" lean-forward="false" selection-start-line="71" selection-start-column="45" selection-end-line="88" selection-end-column="17" />
               <folding>
                 <element signature="e#1#28#0" expanded="true" />
               </folding>
@@ -30,8 +30,8 @@
       <file leaf-file-name="Quest_Class.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Assets/Quest_Class.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="19" column="0" lean-forward="false" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+            <state relative-caret-position="170">
+              <caret line="10" column="28" lean-forward="true" selection-start-line="8" selection-start-column="23" selection-end-line="10" selection-end-column="28" />
               <folding>
                 <element signature="e#0#14#0" expanded="true" />
               </folding>
@@ -39,11 +39,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="NPC_Class.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="NPC_Class.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Assets/NPC_Class.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="14" column="0" lean-forward="true" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+            <state relative-caret-position="170">
+              <caret line="28" column="49" lean-forward="false" selection-start-line="28" selection-start-column="49" selection-end-line="31" selection-end-column="41" />
               <folding>
                 <element signature="e#0#14#0" expanded="true" />
               </folding>
@@ -138,11 +138,11 @@
         <option value="$PROJECT_DIR$/Assets/Weapon.py" />
         <option value="$PROJECT_DIR$/Assets/Armor.py" />
         <option value="$PROJECT_DIR$/Assets/Monster_Class.py" />
-        <option value="$PROJECT_DIR$/Assets/NPC_Class.py" />
         <option value="$PROJECT_DIR$/Assets/Location.py" />
-        <option value="$PROJECT_DIR$/Assets/Quest_Class.py" />
         <option value="$PROJECT_DIR$/Main.py" />
+        <option value="$PROJECT_DIR$/Assets/Quest_Class.py" />
         <option value="$PROJECT_DIR$/Assets/Object_Creation.py" />
+        <option value="$PROJECT_DIR$/Assets/NPC_Class.py" />
       </list>
     </option>
   </component>
@@ -494,16 +494,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Assets/NPC_Class.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="0" lean-forward="true" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#14#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Assets/Location.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="459">
@@ -520,16 +510,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Assets/Quest_Class.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" column="0" lean-forward="false" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#14#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Main.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
@@ -542,10 +522,30 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Assets/Object_Creation.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="56" column="41" lean-forward="false" selection-start-line="56" selection-start-column="41" selection-end-line="56" selection-end-column="41" />
+        <state relative-caret-position="158">
+          <caret line="71" column="45" lean-forward="false" selection-start-line="71" selection-start-column="45" selection-end-line="88" selection-end-column="17" />
           <folding>
             <element signature="e#1#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/Quest_Class.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="28" lean-forward="true" selection-start-line="8" selection-start-column="23" selection-end-line="10" selection-end-column="28" />
+          <folding>
+            <element signature="e#0#14#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/NPC_Class.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="28" column="49" lean-forward="false" selection-start-line="28" selection-start-column="49" selection-end-line="31" selection-end-column="41" />
+          <folding>
+            <element signature="e#0#14#0" expanded="true" />
           </folding>
         </state>
       </provider>
