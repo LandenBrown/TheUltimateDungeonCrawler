@@ -4,24 +4,24 @@ p1
 (dp2
 S'dexterity'
 p3
-I12
+I9
 sS'gold'
 p4
 I0
 sS'max_xp'
 p5
-I15
+I10
 sS'profession'
 p6
 NsS'xp'
 p7
-I0
+I1
 sS'strength'
 p8
-I4
+I6
 sS'constitution'
 p9
-I20
+I6
 sS'armor'
 p10
 (iAssets.Armor
@@ -30,83 +30,114 @@ p11
 (dp12
 S'hpbonus'
 p13
-I65
+I10
 sS'cost'
 p14
-I5000
+I1
 sS'name'
 p15
-S'Plate Armor from the Void'
+S'Torn Leather Armor'
 p16
 sS'enhancement'
 p17
-NsbsS'statpoints'
+(iAssets.Monster_Enhancement
+Monster_Enhancement
 p18
-I6
-sS'charisma'
-p19
-I18
-sS'health'
+(dp19
+S'weakness'
 p20
-I240
-sS'inventory'
+(iAssets.Elemental_Type
+Elemental_Type
 p21
-(lp22
-sS'location'
+(dp22
+S'damage_modifier'
 p23
+I1
+sg15
+S'Fire'
+p24
+sbsg23
+I0
+sg8
+(iAssets.Elemental_Type
+Elemental_Type
+p25
+(dp26
+g23
+I1
+sg15
+S'Water'
+p27
+sbsg15
+S'Flesh'
+p28
+sbsbsS'statpoints'
+p29
+I5
+sS'charisma'
+p30
+I9
+sS'health'
+p31
+I100
+sS'inventory'
+p32
+(lp33
+sS'location'
+p34
 (iAssets.Location
 Location
-p24
-(dp25
+p35
+(dp36
 S'shop'
-p26
+p37
 (iAssets.Location
 Shop
-p27
-(dp28
+p38
+(dp39
 S'wconfig'
-p29
-(lp30
-S'Iron Spear'
-p31
+p40
+(lp41
+S'Iron Longsword'
+p42
 aI3
 aI3
 aI1
 aI30
 aI5
 asS'aconfig'
-p32
-(lp33
-S'Iron Hammer'
-p34
+p43
+(lp44
+S'Iron Spear'
+p45
 aI3
 aI3
 aI1
 aI30
 aI5
 asg15
-S'FellRyke Spire Market'
-p35
+S'Crather Castle Market'
+p46
 sbsS'sub2'
-p36
+p47
 (iAssets.Location
 SubLocation
-p37
-(dp38
+p48
+(dp49
 S'monster_rating'
-p39
-I5
+p50
+I3
 sS'resource'
-p40
+p51
 Nsg15
-S'FellRyke Mage Tower'
-p41
+S'Crather Plains'
+p52
 sS'monster'
-p42
-(lp43
-(lp44
-S'Void Lord'
-p45
+p53
+(lp54
+(lp55
+S'Goblin'
+p56
 aI1
 aI1
 aI1
@@ -114,359 +145,423 @@ aI1
 aI1
 a(iAssets.MonsterType
 MonsterBreed
-p46
-(dp47
+p57
+(dp58
 g15
-g45
+g56
 sS'attack3'
-p48
+p59
 (iAssets.MonsterType
 AttackType
-p49
-(dp50
+p60
+(dp61
 S'damagebuffer'
-p51
+p62
+I2
+sg15
+S'Punch'
+p63
+sS'desc2'
+p64
+S'unexpectedly strikes you in the neck with a jab'
+p65
+sS'desc3'
+p66
+S'quickly throws a hook, landing on the lower part of your jaws, disorienting you'
+p67
+sS'basedamage'
+p68
+I2
+sS'desc1'
+p69
+S'throws a jab at you, clipping your jaw'
+p70
+sbsS'attack2'
+p71
+(iAssets.MonsterType
+AttackType
+p72
+(dp73
+g62
+I1
+sg15
+S'Screech'
+p74
+sg64
+S'puffs its chest and screeches, causing you to have major disorientation'
+p75
+sg66
+S'raises its arms to the sky and screeches to its god, giving it strength and making your ears bleed'
+p76
+sg68
+I1
+sg69
+S'screeches a war cry, deafening you'
+p77
+sbsS'attack1'
+p78
+(iAssets.MonsterType
+AttackType
+p79
+(dp80
+g62
+I4
+sg15
+S'Fingernail Scratch'
+p81
+sg64
+S'spins and scratches you with its fingeranils'
+p82
+sg66
+S'furiously charges you and begins thrashing at your skin with its sharp nails'
+p83
+sg68
+I1
+sg69
+S'screams and hurdles on top of you, tearing at your flesh with its nails'
+p84
+sbsS'attack5'
+p85
+(iAssets.MonsterType
+AttackType
+p86
+(dp87
+g62
+I3
+sg15
+S'Trhow'
+p88
+sg64
+S'picks up the nearest rock and throws it in your direction, colliding with your forehead causing major bleeding'
+p89
+sg66
+S'throws its shoe at you, distracting you as rock collides with your ribs with great force'
+p90
+sg68
+I1
+sg69
+S'uses all its strength to hurdle its war club at you, colliding with your head, leaving you disoriented'
+p91
+sbsS'attack4'
+p92
+(iAssets.MonsterType
+AttackType
+p93
+(dp94
+g62
+I3
+sg15
+S'Swing'
+p95
+sg64
+S'with great strength, swings his club against your weapon, easily out-weighing it, causing you to lose grip of your weapon'
+p96
+sg66
+S'swings his weapon at your legs, completely knocking you off your feet'
+p97
+sg68
+I2
+sg69
+S'swings its war club at you, colliding with your armor, causing the wind to violently exit your lungs'
+p98
+sbsg17
+g21
+sbaI1
+aNaNaNaasbsg15
+S'Crather Castle'
+p99
+sS'sub1'
+p100
+(iAssets.Location
+SubLocation
+p101
+(dp102
+g50
+I3
+sg51
+Nsg15
+S'Crather Castle Dungeon'
+p103
+sg53
+(lp104
+(lp105
+S'Skeleton'
+p106
+aI1
+aI1
+aI1
+aI1
+aI1
+a(iAssets.MonsterType
+MonsterBreed
+p107
+(dp108
+g15
+g106
+sg59
+(iAssets.MonsterType
+AttackType
+p109
+(dp110
+g62
+I3
+sg15
+S'Sword Slap'
+p111
+sg64
+S'slaps the flat of its sword against the side of your thigh, causing you to collapse to the floor in pain'
+p112
+sg66
+S'slaps your hands with the side of its sword, immediately causing severe bruising and swellingalong your fingers'
+p113
+sg68
+I3
+sg69
+S'turns its sword on its side, and slaps your helmet, causing disorientation and ringing'
+p114
+sbsg71
+(iAssets.MonsterType
+AttackType
+p115
+(dp116
+g62
+I4
+sg15
+S'Shield Bash'
+p117
+sg64
+S'swings the edge of its shield into your head armor, disorienting you and causing confusion'
+p118
+sg66
+S'quickly spins and throws its shield into your platearmor, hitting with such force that it dents your armor'
+p119
+sg68
+I2
+sg69
+S'lunges towards you, shoving its shield into your sternum and shoving violently'
+p120
+sbsg78
+(iAssets.MonsterType
+AttackType
+p121
+(dp122
+g62
+I5
+sg15
+S'Sword Swing'
+p123
+sg64
+S'swings its sword into the armor protecting your ribcage, causing trauma to your cartilage'
+p124
+sg66
+S'swings its sword against your forearms, leaving a massive gash, pouring blood'
+p125
+sg68
+I3
+sg69
+S'flies its sword in the air and down onto your armor, ripping the metal apart like butter'
+p126
+sbsg85
+(iAssets.MonsterType
+AttackType
+p127
+(dp128
+g62
 I7
 sg15
 S'Demonize'
-p52
-sS'desc2'
-p53
-S'manipulates your weapon to slice your wrists'
-p54
-sS'desc3'
-p55
-S'forces your hips to become unpostured, ripping them out of the joints'
-p56
-sS'basedamage'
-p57
-I5
-sS'desc1'
-p58
-S'manipulates your body to dislocate and put in place your shoulder joints'
-p59
-sbsS'attack2'
-p60
-(iAssets.MonsterType
-AttackType
-p61
-(dp62
-g51
-I7
-sg15
-S'Stress Mind'
-p63
-sg53
-S'reaches a hand to the sky, as your mind becomes unclear and you feel the blood vessels popping in your eyes'
-p64
-sg55
-S'points a finger at you as you suddenly begin to get light headed and can hear the blood in your head thicken'
-p65
-sg57
-I5
-sg58
-S'holds a sinlge hand out and clenches his fist, as you feel a great pressure consume your mind'
-p66
-sbsS'attack1'
-p67
-(iAssets.MonsterType
-AttackType
-p68
-(dp69
-g51
-I7
-sg15
-g52
-sg53
+p129
+sg64
 S'reaches both hands towards you and sucks your blood from your capillaries'
-p70
-sg55
+p130
+sg66
 S'raises both hands in the air, as you suddenly feel a great force pull you to your knees and begin pulling the life force from your chest'
-p71
-sg57
+p131
+sg68
 I5
-sg58
+sg69
 S'stares directly into your soul, dazing you and sucking the life force from your body'
-p72
-sbsS'attack5'
-p73
+p132
+sbsg92
 (iAssets.MonsterType
 AttackType
-p74
-(dp75
-g51
-I7
+p133
+(dp134
+g62
+I6
 sg15
-g52
-sg53
-S'points his staff at you, forcing your blood to ooze out of your eyes and nose'
-p76
-sg55
-S'draws a blood magic circle at your feet ripping the viens out of the bottom of your feet and through your armor'
-p77
-sg57
-I5
-sg58
-S'gazes into your soul, as you feel your blood start to thicken and curdle throughout your body'
-p78
-sbsS'attack4'
-p79
-(iAssets.MonsterType
-AttackType
-p80
-(dp81
-g51
-I7
-sg15
-g52
-sg53
-S'throws a ball of pure hatred and void in your direction exploding against your armor and burning your skin'
-p82
-sg55
-S'channels a ball of void energy into your armor, heating the armor to smoldering temperatures'
-p83
-sg57
-I5
-sg58
-S'suddenly summons a mysterious blue and purple ball, and hurdles it at you, throwing you 20 feet backward'
-p84
+S'Sword_Throw'
+p135
+sg64
+S'throws its sword like an axe at your legs, lacerating your shin open, exposing the bone'
+p136
+sg66
+S'wildly throws its sword at you, perfectly landing in an open spot in your armor, viciously lacerating your flesh'
+p137
+sg68
+I6
+sg69
+S'winds up and throws it sword directly into your chest, causing you to pull out 3 inches of the blade from your body'
+p138
 sbsg17
-(iAssets.Elemental_Type
-Elemental_Type
-p85
-(dp86
-S'damage_modifier'
-p87
-I1
-sg15
-S'Darkness'
-p88
-sbsbaI1
-aNaNaNaasbsg15
-S'FellRyke Spire'
-p89
-sS'sub1'
-p90
-(iAssets.Location
-SubLocation
-p91
-(dp92
-g39
-I5
-sg40
-Nsg15
-S'FellRyke Manor'
-p93
-sg42
-(lp94
-(lp95
-S'Blood Wizard'
-p96
-aI1
-aI1
-aI1
-aI1
-aI1
-a(iAssets.MonsterType
-MonsterBreed
-p97
-(dp98
-g15
-g96
-sg48
-g49
-sg60
-g61
-sg67
-g68
-sg73
-g74
-sg79
-g80
-sg17
-g85
+g21
 sbaI1
 aNaNaNaasbsS'tavern'
-p99
+p139
 (iAssets.Location
 Tavern
-p100
-(dp101
+p140
+(dp141
 S'owner'
-p102
+p142
 (iAssets.NPC_Class
 NPC
-p103
-(dp104
+p143
+(dp144
 S'quest'
-p105
+p145
 NsS'intro'
-p106
-S"'Hello...' the mystic says as he stares blankly into your eyes..."
-p107
+p146
+S'Greetings Adventurer! You seem new to Remera! Sit down and enjoy a drink!'
+p147
 sg15
-S'Mystic Grear'
-p108
+S'Greji Stormbeard'
+p148
 sbsS'npc1'
-p109
+p149
 (iAssets.NPC_Class
 NPC
-p110
-(dp111
-g105
+p150
+(dp151
+g145
 (iAssets.Quest_Class
 Quest
-p112
-(dp113
+p152
+(dp153
 S'd10'
-p114
+p154
 NsS'target'
-p115
-S'Kill the Void Lord'
-p116
+p155
+S'Kill 3 Creaking Skeletons'
+p156
 sS'goal'
-p117
-I1
+p157
+I3
 sS'target_objective'
-p118
-g45
+p158
+S'Creaking Skeleton'
+p159
 sS'current'
-p119
+p160
 I0
 sS'complete'
-p120
+p161
 I00
 sS'd8'
-p121
+p162
 NsS'd9'
-p122
+p163
 NsS'd6'
-p123
+p164
 NsS'd7'
-p124
+p165
 NsS'd4'
-p125
+p166
 NsS'd5'
-p126
+p167
 NsS'd2'
-p127
-S'There is a dark Lord that is summoning demons across the land! He resides in the Msnor!'
-p128
+p168
+S'They have been relentlessly slaughtering villagers, or any livestock that dares near the area'
+p169
 sS'd3'
-p129
-S'He must be stopped! The entire world of Ramera is resting in his hands!'
-p130
+p170
+S'Unfortunately I do not have the skill or the aptitude to take care of this myself...'
+p171
 sS'd1'
-p131
-S'Oh heavens, what are we going to do?'
-p132
-sbsg106
-S'Interesting, my mind affecting magic seems to be warded against you... come hither, breahting life-source...'
-p133
+p172
+S'Well, as you may have heard, skeletons are ammassing in the Crather Dungeon...'
+p173
+sbsg146
+S"Mmm, Hello there friend... I've had quite a bit to drink, do you mind taking care of something for me?"
+p174
 sg15
-S'Jarvek Hurf'
-p134
+S'Reyla Crosser'
+p175
 sbsg15
-S'FellRyke Spire Tavern'
-p135
+S'Crather Castle Tavern'
+p176
 sS'description'
-p136
-S'A dark, mysterious aura exudes from everyone here... Not many people talking, and there is no bard to make music... The silence is not calming...'
-p137
+p177
+S"Towns folk dance and sing, farmers smoke lempus, and guards rejoice in the King's glory. Happiness exudes from the enviroment..."
+p178
 sbsS'sub3'
-p138
+p179
 (iAssets.Location
 SubLocation
-p139
-(dp140
-g39
+p180
+(dp181
+g50
 I5
-sg40
+sg51
 Nsg15
-S'FellRyke Grave Yard'
-p141
-sg42
-(lp142
-(lp143
-S'Necromancer'
-p144
-aI1
-aI1
-aI1
-aI1
-aI1
-a(iAssets.MonsterType
-MonsterBreed
-p145
-(dp146
-g15
-g144
-sg48
-g49
-sg60
-g61
-sg67
-g68
-sg73
-g74
-sg79
-g80
-sg17
-g85
-sbaI1
-aNaNaNaasbsbsS'maxhealth'
-p147
-I240
+S'Crather Ruins'
+p182
+sg53
+(lp183
+g105
+asbsbsS'maxhealth'
+p184
+I100
 sS'wisdom'
-p148
-I18
-sg105
+p185
+I4
+sg145
 Nsg15
-S'Josh Edwards'
-p149
+S'Ragnar'
+p186
 sS'mainlocation'
-p150
-g24
+p187
+g35
 sS'level'
-p151
-I2
+p188
+I1
 sS'mainweapon'
-p152
+p189
 (iAssets.Weapon
 Weapon
-p153
-(dp154
+p190
+(dp191
 g15
-S'Void Spear'
-p155
-sg151
+S'Rusty Dagger'
+p192
+sg188
 I1
 sS'durability'
-p156
-I100
+p193
+I60
 sS'damage'
-p157
-I8
+p194
+I1
 sg14
-I5000
+I1
 sS'swing_speed'
-p158
-I8
+p195
+I1
 sbsS'age'
-p159
-I34
+p196
+I35
 sS'race'
-p160
+p197
 (iAssets.Race
 Race
-p161
-(dp162
+p198
+(dp199
 S'swingbonus'
-p163
+p200
 I0
 sg13
 I40
 sg15
 S'Dwarf'
-p164
+p201
 sbsb.

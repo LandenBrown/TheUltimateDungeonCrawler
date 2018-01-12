@@ -25,13 +25,11 @@ def mainEngine():
                 while campchoice != "Return to Town":
                     campchoice = easygui.buttonbox("You venture your way to the " + explorechoice,
                                                    "The Ultimate Dungeon Crawler",
-                                                   ["Take a closer look around", "Camp", "Return to Town"])
-                    if campchoice == "Take a closer look around":
-                        easygui.msgbox("You take a closer look around")
-                    if campchoice == "Camp":
-                        easygui.msgbox("You set up camp, and attempt to rest for a turn...")
+                                                   ["Search for Monsters", "Return to Town"])
+                    if campchoice == "Search for Monsters":
+                        easygui.msgbox("You Search for Monsters")
                         Assets.Object_Creation.player.explore()
-                        easygui.msgbox("You finish resting")
+                        easygui.msgbox("You finish searching")
                     if campchoice == "Return to Town":
                         easygui.msgbox("You pack your things and set out to Town")
                     Assets.Object_Creation.game_clock.checkDate()
@@ -42,13 +40,13 @@ def mainEngine():
                 while campchoice != "Return to Town":
                     campchoice = easygui.buttonbox("You venture your way to the " + explorechoice,
                                                    "The Ultimate Dungeon Crawler",
-                                                   ["Take a closer look around", "Camp", "Return to Town"])
+                                                   ["Search for Monsters", "Return to Town"])
                     if campchoice == "Take a closer look around":
                         easygui.msgbox("You take a closer look around")
-                    if campchoice == "Camp":
-                        easygui.msgbox("You set up camp, and attempt to make it through the night alive...")
+                    if campchoice == "Search for Monsters":
+                        easygui.msgbox("You Search for Monsters")
                         Assets.Object_Creation.player.explore()
-                        easygui.msgbox("You make it through the night alive")
+                        easygui.msgbox("You finish searching")
                     if campchoice == "Return to Town":
                         easygui.msgbox("You pack your things and set out to Town")
                     Assets.Object_Creation.game_clock.checkDate()
@@ -59,13 +57,13 @@ def mainEngine():
                 while campchoice != "Return to Town":
                     campchoice = easygui.buttonbox("You venture your way to the " + explorechoice,
                                                    "The Ultimate Dungeon Crawler",
-                                                   ["Take a closer look around", "Camp", "Return to Town"])
+                                                   ["Search for Monsters", "Return to Town"])
                     if campchoice == "Take a closer look around":
                         easygui.msgbox("You take a closer look around")
-                    if campchoice == "Camp":
-                        easygui.msgbox("You set up camp, and attempt to make it through the night alive...")
+                    if campchoice == "Search for Monsters":
+                        easygui.msgbox("You Search for Monsters")
                         Assets.Object_Creation.player.explore()
-                        easygui.msgbox("You make it through the night alive")
+                        easygui.msgbox("You finish searching")
                     if campchoice == "Return to Town":
                         easygui.msgbox("You pack your things and set out to Town")
                     Assets.Object_Creation.game_clock.checkDate()
@@ -98,6 +96,7 @@ def mainEngine():
             with open(r"Character1.file", "wb") as output_file:
                 cPickle.dump(Assets.Object_Creation.player, output_file)
             Assets.Object_Creation.game_clock.checkDate()
+            easygui.msgbox("Game Saved!")
         if mainmenu == "Quit To Menu":
             break
         Assets.Object_Creation.player.location = Assets.Object_Creation.player.mainlocation
@@ -105,18 +104,19 @@ def mainEngine():
 def loadGame():
     with open(r"Character1.file", "rb") as input_file:
         Assets.Object_Creation.player = cPickle.load(input_file)
+    easygui.msgbox("Game loaded successfully! Launching Game...")
     mainEngine()
 
 
-def viewCharacter():
-    easygui.msgbox("Here you will select your characters!")
-    charchoice = None
-    while charchoice != "Back":
-        option = easygui.buttonbox("Please select a character!", "v0.01",
-                                   ["Character 1", "Character 2", "Character 3", "Back"])
-        easygui.msgbox("You have made a selection!")
-        if option == "Back":
-            charchoice = "Back"
+#def viewCharacter():
+#    easygui.msgbox("Here you will select your characters!")
+#    charchoice = None
+#    while charchoice != "Back":
+#        option = easygui.buttonbox("Please select a character!", "v0.01",
+#                                   ["Character 1", "Character 2", "Character 3", "Back"])
+#        easygui.msgbox("You have made a selection!")
+#        if option == "Back":
+#            charchoice = "Back"
 
 
 def newCharacter():
@@ -126,7 +126,7 @@ def newCharacter():
 
 
 while enginecheck != "Quit":
-    choice = buttonbox("Welcome to TUDC!", "v0.01",
+    choice = buttonbox("Welcome to TUDC!", "v1.0",
                        ["New Character", "Load Game", "Quit"])
     if choice == "Quit":
         break

@@ -131,7 +131,7 @@ def View_Character(p):
             b = 0
             while b != "Back":
                 b = easygui.buttonbox("What equipment would you like to examine?", "TUDC",
-                                      ["Armor", "Weapon", "Inventory", "Back"])
+                                      ["Armor", "Weapon", "Back"])
                 if b == "Armor":
                     easygui.msgbox("You are currently wearing " + p.armor.name + ", which gives you an HP Bonus of: " + str(p.armor.hpbonus) + "!")
                 if b == "Weapon":
@@ -495,8 +495,8 @@ wildabeast_breed = MonsterBreed("Wildabeast", claw, bite, trip, claw_bite, trip,
 
       #######SHOPS#######
 crathershop = Shop("Crather Castle Market", ["Iron Longsword", 3, 3, 1, 30, 5], ["Iron Spear", 3, 3, 1, 30, 5])
-fellrykeshop = Shop("FellRyke Spire Market", ["Iron Spear", 3, 3, 1, 30, 5], ["Iron Hammer", 3, 3, 1, 30, 5])
-darlekshop = Shop("Darlek Black Market", ["Iron Spear", 3, 3, 1, 30, 5], ["Iron Hammer", 3, 3, 1, 30, 5])
+fellrykeshop = Shop("FellRyke Spire Market", ["Iron Flail", 3, 3, 1, 30, 5], ["Iron Hammer", 3, 3, 1, 30, 5])
+darlekshop = Shop("Darlek Black Market", ["Iron Dagger", 3, 3, 1, 30, 5], ["Iron Scimitar", 3, 3, 1, 30, 5])
 
 
 ####### NPCs
