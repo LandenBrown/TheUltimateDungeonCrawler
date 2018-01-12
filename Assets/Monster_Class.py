@@ -18,21 +18,21 @@ class Monster:
         ### Wolf
         if self.level == 1 and self.name == "Wolf":
             self.wdropconfig = ["Iron Longsword", 3, 3, 1, 30, 5]
-            self.health = 10
-            self.xpdrop = 1
+            self.health = 3
+            self.xpdrop = 9
             self.golddrop = 1
             self.prefix = "Mangy " # Has to have a space after the last string character before the quote!!!!!!!!!!!!!!!!!!!!!!!
             self.name = self.prefix + self.name
         if self.level == 2 and self.name == "Wolf":
             self.wdropconfig = ["Iron Longsword", 3, 3, 2, 30, 5]
-            self.health = 25
+            self.health = 7
             self.xpdrop = 2
             self.golddrop = 4
             self.prefix = "Vicious "
             self.name = self.prefix + self.name
         if self.level == 3 and self.name == "Wolf":
             self.wdropconfig = ["Iron Longsword", 3, 3, 3, 30, 5]
-            self.health = 35
+            self.health = 15
             self.xpdrop = 7
             self.golddrop = 9
             self.prefix = "Alpha"
@@ -65,7 +65,8 @@ class Monster:
             self.health = 5
             self.xpdrop = 1
             self.golddrop = 1
-            self.prefix = "Creeking "
+
+            self.prefix = "Creaking "
             self.name = self.prefix + self.name
         if self.level == 2 and self.name == "Skeleton":
             self.wdropconfig = ["Iron Hammer", 3, 3, 2, 30, 5]
@@ -147,7 +148,18 @@ class Monster:
             self.golddrop = 3
             self.prefix = "All-Powerful "
             self.name = self.prefix + self.name
-
+        if self.name == "Void Lord":
+            self.wdropconfig = ["Void Spear", 8, 8, 1, 100, 5000]
+            self.adropconfig = ["Plate Armor from the Void", 65, 5000, None] #name, hpbonus, cost, enhancement
+            self.health = 5
+            self.xpdrop = 15
+            self.golddrop = 500
+        if self.name == "Wildabeast":
+            self.wdropconfig = ["Fang Dagger of The Wildabeast", 10, 10, 1, 100, 10000]
+            self.adropconfig = ["Hide Armor of the Legend", 40, 5000, None] #name, hpbonus, cost, enhancement
+            self.health = 35
+            self.xpdrop = 20
+            self.golddrop = 500
 
             
     def Hit(self, p):

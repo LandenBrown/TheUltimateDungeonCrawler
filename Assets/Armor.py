@@ -5,7 +5,9 @@ class Armor:
                 self.hpbonus = hpbonus
                 self.cost = cost
                 self.enhancement = enhancement
-	
+
+
+	### ARMOR WILL ONLY BE GIVEN OUT BY BOSS FIGHTS OR QUEST CONMPLETION
 
 
 

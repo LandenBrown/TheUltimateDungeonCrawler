@@ -56,6 +56,22 @@ class Weapon:
         if self.level == 5 and self.name == "Iron Spear":
             self.durability = 60
             self.damage = 12
+        ### Rsuty Dagger
+        if self.level == 1 and self.name == "Rusty Dagger":
+            self.durability = 60
+            self.damage = 1
+        if self.level == 2 and self.name == "Rusty Dagger":
+            self.durability = 60
+            self.damage = 3
+        if self.level == 3 and self.name == "Rusty Dagger":
+            self.durability = 60
+            self.damage = 6
+        if self.level == 4 and self.name == "Rusty Dagger":
+            self.durability = 60
+            self.damage = 9
+        if self.level == 5 and self.name == "Rusty Dagger":
+            self.durability = 60
+            self.damage = 12
 
 
 

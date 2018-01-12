@@ -11,6 +11,8 @@ from Armor import *
 from Resource import *
 from Monster_Enhancement import *
 from Elemental_Type import *
+from NPC_Class import *
+from Quest_Class import *
 import random
 import easygui
 from easygui import *
@@ -19,42 +21,222 @@ from easygui import *
 
 
 class Game_Time:
-        def __init__(self, day, year):
-                self.day = day
-                self.year = year
+        def __init__(self, day, year, time, turn):
+            self.day = day
+            self.year = year
+            self.time = time
+            self.turn = turn
         def checkDate(self):
-                if self.day >= 60:
-                        self.year = self.year + 1
-                        self.day = 1
-                        if self.year == 351:
-                                print "Welcome to the year of the Scorpion."
+            self.turn += 1
+            if self.turn >= 6:
+                self.day += 1
+                self.turn = 0
+                print "You have advanced a day!"
+            if self.turn <= 2:
+                self.time = "Morning"
+            if self.turn == 3:
+                self.time = "Afternoon"
+            if self.turn > 3:
+                self.time = "Evening"
+            if self.day >= 60:
+                    self.year = self.year + 1
+                    self.day = 1
+                    if self.year == 351:
+                        print "Welcome to the year of the Scorpion."
 				                #A significant "Attention Grabber" designed to interest the player
 				                #Will bring new merchants to the world, earthquakes will open new dungeons
 				                #A new element will envelope the world, causing imbalance in combat until contained (new quests)
 				                #A Seeker will enter the world, often entering towns and offering legendary spells for high gold prices
-                        if self.year == 352:
-                                print "Welcome to the year of the Centaur"
+                    if self.year == 352:
+                        print "Welcome to the year of the Centaur"
 				                #A great centuar will visit the town, look beautiful, but bring curses
 				                #Must investigate and determine what is causing the dark magic (new quests)
-                        if self.year == 353:
-                                print "Welcome to the year of the Void Kraken"
+                    if self.year == 353:
+                            print "Welcome to the year of the Void Kraken"
 				                #The Void Kraken will consume the FellRyke Spire, Must Climb the spire and kill each stage of him
 				                #Defeat it to visit this town again and help rebuild (New quests)
-                        if self.year == 354:
-                                print "Welcome to the year of the Ghoul"
+                    if self.year == 354:
+                            print "Welcome to the year of the Ghoul"
 				                #Ghouls will be twice as powerful this year
 				                #An Army of Ghouls (level 3) will invade Crather Castle. You can run/fight
 				                #Ghouls will grow in numbers if not dealt with, could potentially take over the world and all zones
 				                #Ghouls will disapear upon the new year when the Searing Cornerstone turns them to ash
 				                #Will force you to camp in the wilderness and not visit towns.
-                        if self.year == 355:
-                                print "Welcome to the decade of the Searing CornerStone"
+                    if self.year == 355:
+                            print "Welcome to the decade of the Searing CornerStone"
 				#Sears all Ghouls from the year of the ghoul to ash
 				#Special event happens on day 25 
 				#Significant world changes
                 
-game_clock = Game_Time(1, 350)
-####
+game_clock = Game_Time(1, 350, "Morning", 0)
+#### Strength, Dexterity, Wisdom, Charisma, Constitution
+
+
+def Talk_To_NPC(p):
+    #Decide what NPC we are talking to
+    npc = 0
+    while npc != "Leave Tavern":
+        npc = easygui.buttonbox(p.mainlocation.tavern.description+"Who would you like to talk to?", "Tavern",
+                                [p.mainlocation.tavern.owner.name, p.mainlocation.tavern.npc1.name, "Leave Tavern"])
+        if npc == p.mainlocation.tavern.npc1.name:
+            if p.mainlocation.tavern.npc1.quest != None:
+                p.mainlocation.tavern.npc1.Quest_Dialogue(player)
+            else:
+                easygui.msgbox(p.mainlocation.tavern.npc1.intro)
+        if npc == p.mainlocation.tavern.owner.name:
+            if p.mainlocation.tavern.owner.quest != None:
+                p.mainlocation.tavern.owner.Quest_Dialogue(player)
+            else:
+                easygui.msgbox(p.mainlocation.tavern.owner.intro)
+
+
+
+def View_Character(p):
+    y = 0
+    while y != "Quit":
+        y = easygui.buttonbox("Here you can view your equipment and spend skill points. What would you like to do?", "TUDC",
+                          ["Spend Skill Points", "View Equipment", "Quit"])
+        if y == "Spend Skill Points":
+            x = 0
+            while x != "Quit":
+                if p.statpoints != 0:
+                    x = easygui.buttonbox("You have " + str(p.statpoints) + " Stat point(s) to spend!" +
+                                          " -- Strength: " + str(p.strength) + ". Dexterity: " + str(p.dexterity) + ". Constitution: " + str(p.constitution) +
+                                          ". Charisma: " + str(p.charisma) + ". Wisdom: " + str(p.wisdom), "TUDC",
+                                          ["Strength", "Dexterity", "Constitution", "Charisma", "Wisdom"])
+                    if x == "Strength":
+                        p.strength += 1
+                        p.statpoints -= 1
+                        easygui.msgbox("You have increased your Strength to: " +str(p.strength))
+                    if x == "Dexterity":
+                        p.dexterity += 1
+                        p.statpoints -= 1
+                        easygui.msgbox("You have increased your Dexterity to: " +str(p.dexterity))
+                    if x == "Constitution":
+                        p.constitution += 1
+                        p.statpoints -= 1
+                        easygui.msgbox("You have increased your Constitution to: " +str(p.constitution))
+                    if x == "Charisma":
+                        p.charisma += 1
+                        p.statpoints -= 1
+                        easygui.msgbox("You have increased your Charisma to: " +str(p.charisma))
+                    if x == "Wisdom":
+                        p.wisdom += 1
+                        p.statpoints -= 1
+                        easygui.msgbox("You have increased your Wisdom to: " +str(p.wisdom))
+                else:
+                    easygui.msgbox("You are out of skill points!")
+                    break
+        if y == "View Equipment":
+            b = 0
+            while b != "Back":
+                b = easygui.buttonbox("What equipment would you like to examine?", "TUDC",
+                                      ["Armor", "Weapon", "Back"])
+                if b == "Armor":
+                    easygui.msgbox("You are currently wearing " + p.armor.name + ", which gives you an HP Bonus of: " + str(p.armor.hpbonus) + "!")
+                if b == "Weapon":
+                    easygui.msgbox("You are currently wielding a level " + str(p.mainweapon.level) + " " + p.mainweapon.name + ". It does " + str(p.mainweapon.damage) + " damage on its own, and can sell for " + str(p.mainweapon.cost))
+                else:
+                    break
+def Roll_Initial_Stats(p):
+    easygui.msgbox("You are going to roll your stats!")
+    rolls = 5
+    yesno = 0
+    while rolls > 0 or yesno != "Accept":
+        if yesno == "Accept":
+            easygui.msgbox("You have accepted the stats!")
+            break
+        rolls -= 1
+        stren = random.randint(1, 20)
+        dex = random.randint(1, 20)
+        wis = random.randint(1, 20)
+        con = random.randint(1, 20)
+        char = random.randint(1, 20)
+        easygui.msgbox("Strength: " + str(stren) + ". Dexterity: " +str(dex) + ". Wisdom: " + str(wis) + ". Constitution: " + str(con) + ". Charisma: " + str(char) + ".")
+        if rolls <= 0:
+            easygui.msgbox("You ran out of rolls! Click OK to see your final stats!")
+            break
+        yesno = easygui.buttonbox(
+            "Click Roll to attempt to roll your stats! Click Accept when you are satisfied with your randomized stats! Rolls Left: " + str(
+                rolls), "Roll Stats",
+            ["Roll", "Accept"])
+    easygui.msgbox("Your final stats are- Strength: " + str(stren) + ". Dexterity: " +str(dex) + ". Wisdom: " + str(wis) + ". Constitution: " + str(con) + ". Charisma: " + str(char) + ".")
+    p.strength = stren
+    p.dexterity = dex
+    p.wisdom = wis
+    p.constitution = con
+    p.charisma = char
+
+
+def Give_Weapon(cnfg):
+    w1 = Weapon(cnfg[0], cnfg[1], cnfg[2], cnfg[3], cnfg[4], cnfg[5])
+    w1.getConfigs()
+    easygui.msgbox("You've been given a " + w1.name + "! It does " + str(w1.damage) + " damage!")
+    return w1
+def Give_Armor(cnfg):
+    a1 = Armor(cnfg[0], cnfg[1], cnfg[2], cnfg[3])
+    easygui.msgbox("You've been given " + a1.name + "! It gives " + str(a1.hpbonus) + " bonus HP!")
+    return a1
+
+
+def Create_Character(p, c, cc):
+    p.mainlocation = crathercastle
+    p.location = crathercastle
+    easygui.msgbox("You wake up slowly to the smell of a lemprus weed pipe being gently blown in your face... The sweet aftertaste in the back of your throat sooths the pain that is " +
+                   "becoming more and more prevalent as you become more concious.. You open your eyes wearily and turn to see an old man sitting over you..." +
+                   "He is clearly not here to hurt you, as the small medical supplies around him suggest he may have been helping you... 'But where am i... WHO am i?' You think to yourself.")
+    p.name = easygui.enterbox("'Say, What is your name adventurer?' The old man says. You don't remember your name at all... or anything of who you previously were, but you refuse to keep him waiting...")
+    p.age = easygui.integerbox("'Ahh, " + p.name + "... I'm sorry friend, my eyesight is very poor, what is your age?' The old man utters as he squints fervently trying to make a personal account himself.")
+    if p.age >= 35:
+        easygui.msgbox("'Ah, the pains of age begin to grow on you...' He chuckled. '...but the peace of wisdom is growing...")
+    else:
+        easygui.msgbox("'A young lad we have here! Off for some excitement I presume?' The old man says as he laughs, pointing to his own head, clearly mocking your injury.")
+    racechoice = easygui.buttonbox("'Well " + p.name + ", Of what birth do you originate? Your life presence seems too complex to guess...' He says. Is he some kind of wizard? Life sense? How can he feel my life sense?", "TUDC",
+                      ["Human", "Elf", "Dwarf", "Lyzard"])
+    if racechoice == "Human":
+        p.race = human
+        easygui.msgbox("You get a health bonus of " + str(human.hpbonus))
+    if racechoice == "Elf":
+        p.race = elf
+        easygui.msgbox("You get a health bonus of " + str(elf.hpbonus))
+    if racechoice == "Dwarf":
+        p.race = dwarf
+        easygui.msgbox("You get a health bonus of " + str(dwarf.hpbonus))
+    if racechoice == "Lyzard":
+        p.race = lyzard
+        easygui.msgbox("You get a health bonus of " + str(lyzard.hpbonus))
+    easygui.msgbox("'Oh is that so? " + p.name + " The " + p.race.name + ", you are known as?' The man chuckled. 'Well, That sounds like a name to be remembered...'")
+    lifechoice = easygui.buttonbox("The man softly draws back, and gently asks me, 'What do you seek to accomplish here in the land of Ramera?'. I had no idea, about anything. I better decide fast. 'I'll trust my gut' you think to yourself.", "TUDC",
+                      ["Adventure", "Conquer", "Merchant"])
+    if lifechoice == "Adventure":
+        easygui.msgbox("A very stable fellow you seem to be, " + p.name + "...")
+        easygui.msgbox("You've gained +1 to every life stature!")
+        p.strength += 1
+        p.dexterity += 1
+        p.constitution += 1
+        p.charisma += 1
+        p.wisdom += 1
+    if lifechoice == "Conquer":
+        easygui.msgbox("A passion for power brings fame and many riches, be careful, as many will test your worth!")
+        easygui.msgbox("You've gained +2 to Strength and Consitution, and +1 to Dexterity")
+        p.strength += 2
+        p.constitution += 2
+        p.dexterity += 1
+    if lifechoice == "Merchant":
+        easygui.msgbox("A simple life's satisfaction and glory is often one overlooked...")
+        easygui.msgbox("You've gained +3 to Charisma, and +2 to Wisdom!")
+        p.charisma += 3
+        p.wisdom += 2
+    easygui.msgbox("Well friend, I found you washed ashore the crather castle beach with a minor wound to the head, give yourself some time. You reside in " + p.mainlocation.tavern.name + ". Here take this for safe journey...")
+    p.mainweapon = Give_Weapon(c)
+    p.armor = Give_Armor(cc)
+    player.checkStats()
+
+
+
+
+
+
 def Generate_Monster(cnfg):
     monster1 = Monster(cnfg[0], cnfg[1], cnfg[2], cnfg[3], cnfg[4], cnfg[5], cnfg[6], cnfg[7], cnfg[8], cnfg[9], cnfg[10]) #Monster is created based on location configs // in our real game it would be like player.location.sublocation.monsterconfig or something
     monster1.getConfigs() #We load the monster drop configurations
@@ -76,11 +258,11 @@ def Buy_Weapon(s):
     if buy == "Yes":
         return shopweapon
 def Generate_Armor(m):
-    armor1 = Armor(m.adropconfig)
+    armor1 = Armor(m.adropconfig[0], m.adropconfig[1], m.adropconfig[2], m.adropconfig[3])
     return armor1
+    easygui.msgbox("You have equipped new armor!")
 ####
 def Start_Fight():
-    player.checkLevel()
     myMonster = Generate_Monster(player.location.monster[0])
     easygui.msgbox("You have encountered a level " + str(myMonster.level) + " " + myMonster.name + "!")
     while myMonster.health != "Dead":
@@ -89,6 +271,18 @@ def Start_Fight():
         if myMonster.health <= 0:
             easygui.msgbox("You have killed the " + myMonster.name)
             player.mainweapon = Generate_Weapon(myMonster)
+            if myMonster.name == "Void Lord":
+                achoice = easygui.buttonbox("The " + myMonster.name + " dropped legendary armor: " + myMonster.adropconfig[0] + ". Would you like to equip it now?", "Rare Loot",
+                                            ["Yes", "No"])
+                if achoice == "Yes":
+                    player.armor = Generate_Armor(myMonster)
+                else:
+                    easygui.msgbox("You have chosen to give up the legendary item!")
+
+            player.xp += myMonster.xpdrop
+            player.checkStats()
+            if player.quest != None:
+                player.checkQuest(myMonster)
             break
         myMonster.Hit(player)
         if player.health <= 0:
@@ -106,7 +300,7 @@ def Start_Shop():
 
 
 class Humanoid:
-    def __init__(self, name, race, profession, level, gold, health, maxhealth, inventory, mainweapon, mainlocation):
+    def __init__(self, name, race, profession, level, gold, health, maxhealth, inventory, mainweapon, mainlocation, location, age, strength, dexterity, wisdom, constituion, charisma, xp, max_xp, statpoints, armor, quest):
         self.name = name
         self.race = race
         self.profession = profession
@@ -117,25 +311,46 @@ class Humanoid:
         self.inventory = inventory
         self.mainweapon = mainweapon
         self.mainlocation = mainlocation
+        self.location = location
+        self.age = age
+        self.strength = strength
+        self.dexterity = dexterity
+        self. wisdom = wisdom
+        self. constitution = constituion
+        self.charisma = charisma
+        self.xp = xp
+        self.max_xp = max_xp
+        self.statpoints = statpoints
+        self.armor = armor
+        self.quest = quest
 
-    def checkLevel(self):
-        if self.level == 1:
-            self.maxhealth = 100
-        if self.level == 2:
-            self.maxhealth = 120
-        if self.level == 3:
-            self.maxhealth = 144
-        if self.level == 4:
-            self.maxhealth = 172
-        if self.level == 5:
-            self.maxhealth = 206
-
+    def checkStats(self):
+        if self.xp >= self.max_xp:
+            self.level += 1
+            self.max_xp = self.max_xp*1.5
+            self.statpoints += 1
+            self.xp = 0
+            self.max_xp = int(self.max_xp)
+            easygui.msgbox("You have leveled up! You are now level " + str(self.level) +", and have also gained a stat point to spend!")
+            easygui.msgbox("You only have " + str((self.max_xp - self.xp)) + " Experience points to go before you level up!")
+        else:
+            easygui.msgbox("You only have " + str((self.max_xp-self.xp)) + " Experience points to go before you level up!")
+        self.maxhealth = self.race.hpbonus + (self.constitution*10)
         self.health = self.maxhealth
+    def checkQuest(self, m):
+        if self.quest.target_objective == (m.name):
+            self.quest.current += 1
+            print "added to quest obective - TESTING" #Bug testing
+            print self.quest.current
+            print "needed: " + str(self.quest.goal)
+            if self.quest.current >= self.quest.goal:
+                easygui.msgbox("You have completed your quest! You should return and receive your rewards!")
+
 
     def Hit(self, m):
         #here we are going to make the function to hit the monster, so we can call it during game
-        m.health = m.health - self.mainweapon.damage
-        easygui.msgbox("You swing at the monster and deal " + str(self.mainweapon.damage) + " damage!")
+        m.health = m.health - (self.mainweapon.damage+self.strength)
+        easygui.msgbox("You swing at the monster and deal " + str(self.mainweapon.damage+self.strength) + " damage!")
         ##if player.damagedealt < 0: #making sure that we never do negative damage    ############## I COMMENTED THIS OUT BECAUSE NOW DAMAGE SHOULD NEVER BE NEGATIVE DUE TO THE NEW DAMAGE_BUFFER CALCULATIONS - SCORE!                                                                     
         ##  damagedealt = 0                                                                                                                             
     
@@ -144,7 +359,7 @@ class Humanoid:
       if encounterChance <= player.location.monster_rating:
         Start_Fight()
         
-player = Humanoid(None, None, None, 1, 0, 0, 0, [], None, None)
+player = Humanoid(None, None, None, 1, 0, 0, 0, [], None, None, None, None, 1, 1, 1, 1, 1, 1, 10, 5, None, None)
 
 
 #######Creation of Objects#######
@@ -165,12 +380,21 @@ Brightness_element = Elemental_Type("Brightness", 1)
 flesh = Monster_Enhancement("Flesh", 0, water_element, fire_element )
 
 
+##############---PROFESSIONS---######################
+
+##############--- QUESTS ---############################
+quest_kill10skeletons = Quest("Clearing the boneyard", "Well, as you may have heard, skeletons are ammassing in the Crather Dungeon...", "They have been relentlessly slaughtering villagers, or any livestock that dares near the area",
+                              "Unfortunately I do not have the skill or the aptitude to take care of this myself...", None, None, None, None, None, None, None, "Kill 3 Creaking Skeletons", "Creaking Skeleton", 3, 0, False)
+quest_killvoidlord = Quest("The Void Lord", "Oh heavens, what are we going to do?", "There is a dark Lord that is summoning demons across the land! He resides in the Msnor!", "He must be stopped! The entire world of Ramera is resting in his hands!",
+                           None, None, None, None, None, None, None, "Kill the Void Lord", "Void Lord", 1, 0, False)
+quest_killwildabeast = Quest("Hunt or be Hunted", "Traveler! Would ya like to main some coin?", "There is a wildabeast about. You can find him in the -", "He is quite the challenge. Bring me his head and 500 gold will be yours",
+                             None, None, None, None, None, None, None, "Hunt and kill the Wildabeast", "Wildabeast", 1, 0, False)
 ##########################----WEAPONS----###############################
 
 ##Object rules ----
 
 
-##########################---ATTACK TYPES---########################### (Name, desc1, desc2, desc3, dmg, maxdmg)
+##########################---ATTACK TYPES---########################### (Name, desc1, desc2, desc3, dmg, dmgbuffer)
 #####WOLF-LIKE MONSTER ATTACK TYPES #############
 claw = AttackType("Claw", "lunges at you and swipes his claws against your body!",
                   "dashes at your legs while viciously penetrating its claws into your lower extremeties",
@@ -261,6 +485,9 @@ skeleton_breed = MonsterBreed("Skeleton", sword_swing, shield_bash, sword_slap, 
 bloodwizard_breed = MonsterBreed("Blood Wizard", demonize, stress_mind, manipulate, void_ball, blood_curdle, darkness_element)
 necromancer_breed = MonsterBreed("Necromancer", demonize, stress_mind, manipulate, void_ball, blood_curdle, darkness_element)
 voidchancellor_breed = MonsterBreed("Void Chancellor", demonize, stress_mind, manipulate, void_ball, blood_curdle, darkness_element)
+voidlord_breed = MonsterBreed("Void Lord", demonize, stress_mind, manipulate, void_ball, blood_curdle, darkness_element) #Boss
+wildabeast_breed = MonsterBreed("Wildabeast", claw, bite, trip, claw_bite, trip, fire_element) #Boss
+
 
 
 
@@ -268,14 +495,28 @@ voidchancellor_breed = MonsterBreed("Void Chancellor", demonize, stress_mind, ma
 
       #######SHOPS#######
 crathershop = Shop("Crather Castle Market", ["Iron Longsword", 3, 3, 1, 30, 5], ["Iron Spear", 3, 3, 1, 30, 5])
-fellrykeshop = Shop("FellRyke Spire Market", ["Iron Spear", 3, 3, 1, 30, 5], ["Iron Hammer", 3, 3, 1, 30, 5])
-darlekshop = Shop("Darlek Black Market", ["Iron Spear", 3, 3, 1, 30, 5], ["Iron Hammer", 3, 3, 1, 30, 5])
+fellrykeshop = Shop("FellRyke Spire Market", ["Iron Flail", 3, 3, 1, 30, 5], ["Iron Hammer", 3, 3, 1, 30, 5])
+darlekshop = Shop("Darlek Black Market", ["Iron Dagger", 3, 3, 1, 30, 5], ["Iron Scimitar", 3, 3, 1, 30, 5])
+
+
+####### NPCs
+
+
+####CRATHER TAVERN
+greji_stormbeard = NPC("Greji Stormbeard", "Greetings Adventurer! You seem new to Remera! Sit down and enjoy a drink!", None)
+reyla_crosser = NPC("Reyla Crosser", "Mmm, Hello there friend... I've had quite a bit to drink, do you mind taking care of something for me?", quest_kill10skeletons)
+####FELLRYKE TAVERN
+mystic_grear = NPC("Mystic Grear", "'Hello...' the mystic says as he stares blankly into your eyes...", None)
+jarvek_hurf = NPC("Jarvek Hurf", "Interesting, my mind affecting magic seems to be warded against you... come hither, breahting life-source...", quest_killvoidlord)
+####DARLEK TAVERN
+samuel_farwell = NPC("Samuel Farmwell", "Move along... You have no business speaking to me.", None)
+harold_campen = NPC("Harold Campen", "Aha! You look like somebody that could use some work... Come... Sit with me...", quest_killwildabeast)
 
 
       #######TAVERNS#####
-crathertavern = Tavern("Crather Castle Tavern", None, None)
-fellryketavern = Tavern("FellRyke Spire Tavern", None, None)
-darlektavern = Tavern("Darlek Crowded Tavern", None, None)
+crathertavern = Tavern("Crather Castle Tavern", greji_stormbeard, reyla_crosser, "Towns folk dance and sing, farmers smoke lempus, and guards rejoice in the King's glory. Happiness exudes from the enviroment...")
+fellryketavern = Tavern("FellRyke Spire Tavern", mystic_grear, jarvek_hurf, "A dark, mysterious aura exudes from everyone here... Not many people talking, and there is no bard to make music... The silence is not calming...")
+darlektavern = Tavern("Darlek Crowded Tavern", samuel_farwell, harold_campen, "Theives, murderers, and bandits crowd together in the tavern, many looking your way is if you're prey... Best stick to myself here...")
 
 
 
@@ -308,20 +549,22 @@ cratherruins_skeleton_config = ["Skeleton", 1, 1, 1, 1, 1, skeleton_breed, 1, No
 fellrykemanor_bloodwizard_config = ["Blood Wizard", 1, 1, 1, 1, 1, bloodwizard_breed, 1, None, None, None]
 fellrykemagetower_voidchancellor_config = ["Void Chancellor", 1, 1, 1, 1, 1, voidchancellor_breed, 1, None, None, None]
 fellrykegraveyard_necromancer_config = ["Necromancer", 1, 1, 1, 1, 1, necromancer_breed, 1, None, None, None]
+voidlord_conifg = ["Void Lord", 1, 1, 1, 1, 1, voidlord_breed, 1, None, None, None]
+wildabeast_conifg = ["Wildabeast", 1, 1, 1, 1, 1, wildabeast_breed, 1, None, None, None]
 
 
 ###CRATHER CASTLE
 
 #########################----SUB LOCATIONS----##########################
-cratherdungeon = SubLocation("Crather Castle Dungeon", None, 3, [cratherdungeon_wolf_config])
+cratherdungeon = SubLocation("Crather Castle Dungeon", None, 3, [cratherruins_skeleton_config])
 cratherplains = SubLocation("Crather Plains", None, 3, [cratherplains_goblin_config])
 cratherruins = SubLocation("Crather Ruins", None, 5, [cratherruins_skeleton_config])
 fellrykemanor = SubLocation("FellRyke Manor", None, 5, [fellrykemanor_bloodwizard_config])
-fellrykemagetower = SubLocation("FellRyke Mage Tower", None, 5, [fellrykemagetower_voidchancellor_config])
+fellrykemagetower = SubLocation("FellRyke Mage Tower", None, 5, [voidlord_conifg])
 fellrykegraveyard = SubLocation("FellRyke Grave Yard", None, 5, [fellrykegraveyard_necromancer_config])
 darlekhideout = SubLocation("Darlek Rogue Hideout", None, 5, [fellrykegraveyard_necromancer_config])
 darlekcave = SubLocation("Darlek Cave", None, 5, [fellrykegraveyard_necromancer_config])
-darlekdeepwoods = SubLocation("Darlek Deep Woods", None, 5, [fellrykegraveyard_necromancer_config])
+darlekdeepwoods = SubLocation("Darlek Deep Woods", None, 5, [wildabeast_conifg])
 
 
 #########################----LOCATIONS----##############################
@@ -329,15 +572,12 @@ crathercastle = Location("Crather Castle", crathertavern, crathershop, cratherdu
 fellrykespire = Location("FellRyke Spire", fellryketavern, fellrykeshop, fellrykemanor, fellrykemagetower, fellrykegraveyard)
 darlekwoodlands = Location("Darlek Woodlands", darlektavern, darlekshop, darlekhideout, darlekcave, darlekdeepwoods)
 
-
+Sw_Weapon = ["Rusty Dagger", 1, 1, 1, 100, 1]
+Sa_Armor = ["Torn Leather Armor", 10, 1, flesh]
 
 
 ###For testing purposes these initial stats will be hardcoded // This is just to give our player a weapon to test combat with 
-myMonster = None
-player.mainlocation = crathercastle
-player.location = crathercastle
-myMonster = Generate_Monster(player.location.sub1.monster[0])
-player.mainweapon = Generate_Weapon(myMonster)
+
 
 
 
