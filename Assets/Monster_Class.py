@@ -154,7 +154,12 @@ class Monster:
             self.health = 5
             self.xpdrop = 15
             self.golddrop = 500
-
+        if self.name == "Wildabeast":
+            self.wdropconfig = ["Fang Dagger of The Wildabeast", 10, 10, 1, 100, 10000]
+            self.adropconfig = ["Hide Armor of the Legend", 40, 5000, None] #name, hpbonus, cost, enhancement
+            self.health = 35
+            self.xpdrop = 20
+            self.golddrop = 500
 
             
     def Hit(self, p):

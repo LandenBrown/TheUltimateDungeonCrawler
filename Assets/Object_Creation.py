@@ -384,7 +384,10 @@ flesh = Monster_Enhancement("Flesh", 0, water_element, fire_element )
 ##############--- QUESTS ---############################
 quest_kill10skeletons = Quest("Clearing the boneyard", "Well, as you may have heard, skeletons are ammassing in the Crather Dungeon...", "They have been relentlessly slaughtering villagers, or any livestock that dares near the area",
                               "Unfortunately I do not have the skill or the aptitude to take care of this myself...", None, None, None, None, None, None, None, "Kill 3 Creaking Skeletons", "Creaking Skeleton", 3, 0, False)
-
+quest_killvoidlord = Quest("The Void Lord", "Oh heavens, what are we going to do?", "There is a dark Lord that is summoning demons across the land! He resides in the Msnor!", "He must be stopped! The entire world of Ramera is resting in his hands!",
+                           None, None, None, None, None, None, None, "Kill the Void Lord", "Void Lord", 1, 0, False)
+quest_killwildabeast = Quest("Hunt or be Hunted", "Traveler! Would ya like to main some coin?", "There is a wildabeast about. You can find him in the -", "He is quite the challenge. Bring me his head and 500 gold will be yours",
+                             None, None, None, None, None, None, None, "Hunt and kill the Wildabeast", "Wildabeast", 1, 0, False)
 ##########################----WEAPONS----###############################
 
 ##Object rules ----
@@ -481,7 +484,9 @@ skeleton_breed = MonsterBreed("Skeleton", sword_swing, shield_bash, sword_slap, 
 bloodwizard_breed = MonsterBreed("Blood Wizard", demonize, stress_mind, manipulate, void_ball, blood_curdle, darkness_element)
 necromancer_breed = MonsterBreed("Necromancer", demonize, stress_mind, manipulate, void_ball, blood_curdle, darkness_element)
 voidchancellor_breed = MonsterBreed("Void Chancellor", demonize, stress_mind, manipulate, void_ball, blood_curdle, darkness_element)
-voidlord_breed = MonsterBreed("Void Lord", demonize, stress_mind, manipulate, void_ball, blood_curdle, darkness_element)
+voidlord_breed = MonsterBreed("Void Lord", demonize, stress_mind, manipulate, void_ball, blood_curdle, darkness_element) #Boss
+wildabeast_breed = MonsterBreed("Wildabeast", claw, bite, trip, claw_bite, trip, fire_element) #Boss
+
 
 
 
@@ -501,10 +506,10 @@ greji_stormbeard = NPC("Greji Stormbeard", "Greetings Adventurer! You seem new t
 reyla_crosser = NPC("Reyla Crosser", "Mmm, Hello there friend... I've had quite a bit to drink, do you mind taking care of something for me?", quest_kill10skeletons)
 ####FELLRYKE TAVERN
 mystic_grear = NPC("Mystic Grear", "'Hello...' the mystic says as he stares blankly into your eyes...", None)
-jarvek_hurf = NPC("Jarvek Hurf", "Interesting, my mind affecting magic seems to be warded against you... come hither, breahting life-source...", "Yes")
+jarvek_hurf = NPC("Jarvek Hurf", "Interesting, my mind affecting magic seems to be warded against you... come hither, breahting life-source...", quest_killvoidlord)
 ####DARLEK TAVERN
 samuel_farwell = NPC("Samuel Farmwell", "Move along... You have no business speaking to me.", None)
-harold_campen = NPC("Harold Campen", "Aha! You look like somebody that could use some work... Come... Sit with me...", "Yes")
+harold_campen = NPC("Harold Campen", "Aha! You look like somebody that could use some work... Come... Sit with me...", quest_killwildabeast)
 
 
       #######TAVERNS#####
@@ -544,6 +549,7 @@ fellrykemanor_bloodwizard_config = ["Blood Wizard", 1, 1, 1, 1, 1, bloodwizard_b
 fellrykemagetower_voidchancellor_config = ["Void Chancellor", 1, 1, 1, 1, 1, voidchancellor_breed, 1, None, None, None]
 fellrykegraveyard_necromancer_config = ["Necromancer", 1, 1, 1, 1, 1, necromancer_breed, 1, None, None, None]
 voidlord_conifg = ["Void Lord", 1, 1, 1, 1, 1, voidlord_breed, 1, None, None, None]
+wildabeast_conifg = ["Wildabeast", 1, 1, 1, 1, 1, wildabeast_breed, 1, None, None, None]
 
 
 ###CRATHER CASTLE
@@ -553,11 +559,11 @@ cratherdungeon = SubLocation("Crather Castle Dungeon", None, 3, [cratherruins_sk
 cratherplains = SubLocation("Crather Plains", None, 3, [cratherplains_goblin_config])
 cratherruins = SubLocation("Crather Ruins", None, 5, [cratherruins_skeleton_config])
 fellrykemanor = SubLocation("FellRyke Manor", None, 5, [fellrykemanor_bloodwizard_config])
-fellrykemagetower = SubLocation("FellRyke Mage Tower", None, 5, [fellrykemagetower_voidchancellor_config])
+fellrykemagetower = SubLocation("FellRyke Mage Tower", None, 5, [voidlord_conifg])
 fellrykegraveyard = SubLocation("FellRyke Grave Yard", None, 5, [fellrykegraveyard_necromancer_config])
 darlekhideout = SubLocation("Darlek Rogue Hideout", None, 5, [fellrykegraveyard_necromancer_config])
 darlekcave = SubLocation("Darlek Cave", None, 5, [fellrykegraveyard_necromancer_config])
-darlekdeepwoods = SubLocation("Darlek Deep Woods", None, 5, [fellrykegraveyard_necromancer_config])
+darlekdeepwoods = SubLocation("Darlek Deep Woods", None, 5, [wildabeast_conifg])
 
 
 #########################----LOCATIONS----##############################
