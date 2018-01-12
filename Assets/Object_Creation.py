@@ -281,7 +281,8 @@ def Start_Fight():
 
             player.xp += myMonster.xpdrop
             player.checkStats()
-            player.checkQuest(myMonster)
+            if player.quest != None:
+                player.checkQuest(myMonster)
             break
         myMonster.Hit(player)
         if player.health <= 0:

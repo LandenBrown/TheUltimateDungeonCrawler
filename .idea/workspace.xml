@@ -3,8 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="c03142ed-e5e8-4faf-bfab-9e66629884cb" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/Assets/Monster_Class.py" afterPath="$PROJECT_DIR$/Assets/Monster_Class.py" />
       <change beforePath="$PROJECT_DIR$/Assets/Object_Creation.py" afterPath="$PROJECT_DIR$/Assets/Object_Creation.py" />
+      <change beforePath="$PROJECT_DIR$/Character1.txt" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/Character2.txt" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/Character3.txt" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/Main.py" afterPath="$PROJECT_DIR$/Main.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -15,11 +18,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Object_Creation.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Object_Creation.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Assets/Object_Creation.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="552" column="0" lean-forward="true" selection-start-line="552" selection-start-column="0" selection-end-line="565" selection-end-column="78" />
+            <state relative-caret-position="-145">
+              <caret line="277" column="48" lean-forward="false" selection-start-line="277" selection-start-column="48" selection-end-line="277" selection-end-column="48" />
               <folding>
                 <element signature="e#1#28#0" expanded="true" />
               </folding>
@@ -103,11 +106,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Main.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Main.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1258">
-              <caret line="76" column="80" lean-forward="true" selection-start-line="76" selection-start-column="80" selection-end-line="76" selection-end-column="80" />
+            <state relative-caret-position="187">
+              <caret line="89" column="43" lean-forward="false" selection-start-line="89" selection-start-column="43" selection-end-line="107" selection-end-column="16" />
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
               </folding>
@@ -138,19 +141,18 @@
         <option value="$PROJECT_DIR$/Assets/Weapon.py" />
         <option value="$PROJECT_DIR$/Assets/Armor.py" />
         <option value="$PROJECT_DIR$/Assets/Location.py" />
-        <option value="$PROJECT_DIR$/Main.py" />
         <option value="$PROJECT_DIR$/Assets/Quest_Class.py" />
         <option value="$PROJECT_DIR$/Assets/NPC_Class.py" />
         <option value="$PROJECT_DIR$/Assets/Monster_Class.py" />
         <option value="$PROJECT_DIR$/Assets/Object_Creation.py" />
+        <option value="$PROJECT_DIR$/Main.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="294" />
-    <option name="y" value="195" />
-    <option name="width" value="1400" />
-    <option name="height" value="1000" />
+    <option name="x" value="953" />
+    <option name="width" value="974" />
+    <option name="height" value="966" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -563,16 +565,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Assets/NPC_Class - Copy.py" />
-    <entry file="file://$PROJECT_DIR$/Main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1258">
-          <caret line="76" column="80" lean-forward="true" selection-start-line="76" selection-start-column="80" selection-end-line="76" selection-end-column="80" />
-          <folding>
-            <element signature="e#0#13#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Assets/Quest_Class.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
@@ -621,10 +613,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Assets/Object_Creation.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="552" column="0" lean-forward="true" selection-start-line="552" selection-start-column="0" selection-end-line="565" selection-end-column="78" />
+        <state relative-caret-position="-145">
+          <caret line="277" column="48" lean-forward="false" selection-start-line="277" selection-start-column="48" selection-end-line="277" selection-end-column="48" />
           <folding>
             <element signature="e#1#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="89" column="43" lean-forward="false" selection-start-line="89" selection-start-column="43" selection-end-line="107" selection-end-column="16" />
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
           </folding>
         </state>
       </provider>

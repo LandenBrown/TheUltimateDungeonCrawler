@@ -1,7 +1,8 @@
 import Assets
 import easygui
 from easygui import *
-
+import pickle
+import cPickle
 
 enginecheck = 1.5
 
@@ -89,14 +90,22 @@ def mainEngine():
             easygui.msgbox("You have arrived at " + Assets.Object_Creation.player.mainlocation.name + " !")
             Assets.Object_Creation.game_clock.checkDate()
         if mainmenu == "Save":
-            easygui.msgbox("You just saved your game!")
+            #f = open("Character1.txt", "w")
+            #f.write(Assets.Object_Creation.player.name)
+            #print "You have saved your game successfully"
+            #f.close()
+            #pickle.dump(Assets.Object_Creation.player, "Character1.file", pickle.HIGHEST_PROTOCOL)
+            with open(r"Character1.file", "wb") as output_file:
+                cPickle.dump(Assets.Object_Creation.player, output_file)
             Assets.Object_Creation.game_clock.checkDate()
         if mainmenu == "Quit To Menu":
             break
         Assets.Object_Creation.player.location = Assets.Object_Creation.player.mainlocation
 
 def loadGame():
-    easygui.msgbox("This is where you will select a save!")
+    with open(r"Character1.file", "rb") as input_file:
+        Assets.Object_Creation.player = cPickle.load(input_file)
+    mainEngine()
 
 
 def viewCharacter():
